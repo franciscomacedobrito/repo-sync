@@ -1,0 +1,36 @@
+<mat-stepper orientation="vertical" linear  #stepper>
+  <mat-step [stepControl]="pathFormControl">
+    <form [formGroup]="pathFormControl">
+      <ng-template matStepLabel>Package path</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Select path</mat-label>
+        <input formControlName="path" matInput placeholder="Package path">
+      </mat-form-field>
+      <div>
+        <button mat-button (click)="getPackageInfo()">Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <form>
+      <ng-template matStepLabel>package Info</ng-template>
+      <div>
+        <mat-list *ngIf="packageToAdd">
+          <mat-list-item>
+            Name:
+            {{packageToAdd.name}}
+          </mat-list-item>
+          <mat-list-item>
+            Version:
+            {{packageToAdd.version}}
+          </mat-list-item>
+          <mat-list-item>
+            Current branch:
+            {{packageToAdd.branch}}
+          </mat-list-item>
+        </mat-list>
+        <button mat-button matStepperNext (click)="publishPackage()">Next</button>
+      </div>
+    </form>
+  </mat-step>
+</mat-stepper>

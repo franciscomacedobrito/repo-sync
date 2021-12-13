@@ -1,0 +1,8 @@
+<div class="page-wrapper">
+  <mat-list *ngIf="packages">
+    <app-package *ngFor="let path of packages" [path]="path" ></app-package>
+  </mat-list>
+  <button mat-mini-fab routerLink="add-package" class="add-button" color="primary">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

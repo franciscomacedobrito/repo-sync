@@ -1,0 +1,20 @@
+{
+  "packages": [
+    {
+      "id": "1234",
+      "path": "/Users/francisco.brito/Documents/GitHub/blackout"
+    },
+    {
+      "id": "321",
+      "path": "/Users/francisco.brito/Documents/GitHub/repo-sync"
+    }
+  ],
+  "links": [
+    {
+      "id": 1,
+      "active": true,
+      "package": "1234",
+      "client": "321"
+    }
+  ]
+}

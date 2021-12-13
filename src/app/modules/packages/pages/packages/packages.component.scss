@@ -1,0 +1,9 @@
+.page-wrapper {
+  height: 100%;
+  width: calc(100% - 20px);
+  .add-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+  }
+}
