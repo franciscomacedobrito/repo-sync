@@ -2,19 +2,19 @@
   "packages": [
     {
       "id": "1234",
-      "path": "/Users/francisco.brito/Documents/GitHub/blackout"
+      "path": "D:/repo-sync"
     },
     {
       "id": "321",
-      "path": "/Users/francisco.brito/Documents/GitHub/repo-sync"
+      "path": "D:\\kuantukusta\\kuantuKusta"
     }
   ],
   "links": [
     {
       "id": 1,
       "active": true,
-      "package": "1234",
-      "client": "321"
+      "package": "321",
+      "client": "1234"
     }
   ]
 }

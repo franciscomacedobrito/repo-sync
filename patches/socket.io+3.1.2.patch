@@ -1,0 +1,14 @@
+diff --git a/node_modules/socket.io/dist/socket.js b/node_modules/socket.io/dist/socket.js
+index 692e2a5..3a2e319 100644
+--- a/node_modules/socket.io/dist/socket.js
++++ b/node_modules/socket.io/dist/socket.js
+@@ -271,9 +271,6 @@ class Socket extends events_1.EventEmitter {
+         const self = this;
+         let sent = false;
+         return function () {
+-            // prevent double callbacks
+-            if (sent)
+-                return;
+             const args = Array.prototype.slice.call(arguments);
+             debug("sending ack %j", args);
+             self.packet({

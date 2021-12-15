@@ -1,7 +1,5 @@
 import {GET_PACKAGE_INFO, GET_PACKAGES, POST_PACKAGE} from '../../app/modules/shared/constants/liveFunctions.constants';
 import {Socket} from "socket.io";
-import simpleGit from "simple-git";
-import * as fs from "fs";
 import {createPackage, doGetPackageByPath, doGetPackages, listenToPackageByPath} from "../../controllers/packages";
 
 const chokidar = require('chokidar');
@@ -20,6 +18,8 @@ export const getPackageInfo = (socket: Socket) => {
     const {filePath} = data;
 
     listenToPackageByPath(filePath, (packageInfo: any) => {
+      console.log("routing => listenToPackageByPath", callback )
+      debugger;
       callback(packageInfo);
     })
 

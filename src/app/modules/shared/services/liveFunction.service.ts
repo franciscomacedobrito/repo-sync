@@ -8,7 +8,7 @@ import {environment} from "../../../../environments/environment";
 })
 export class LiveFunctionService {
   // @ts-ignore
-  private socket;
+  public socket;
 
   constructor() {
     // @ts-ignore
@@ -17,13 +17,13 @@ export class LiveFunctionService {
 
   subscribe(funcName: string, data?: any): Observable<any> {
     return new Observable((observer) => {
-      this.socket.emit(funcName, data, (data: any) => {
-        if (data.error) {
-          observer.error(data.error);
-          return;
-        }
-        observer.next(data);
-      });
+      // this.socket.emit(funcName, data, (data: any) => {
+      //   if (data.error) {
+      //     observer.error(data.error);
+      //     return;
+      //   }
+      //   observer.next(data);
+      // });
     });
   }
 

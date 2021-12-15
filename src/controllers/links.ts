@@ -12,7 +12,7 @@ export async function doGetLinks(callback: any): Promise<void> {
 export async function listenToLink(link: any, callback: any) {
   if(link.active) {
     await listenToPackageById(link.package, (packageDetails: PackageInterface) => {
-      console.log('link active')
+      console.log('change happened on listenToPackageById on package: ', packageDetails.name)
       // yalc.publishPackage({
       //   workingDir: packageDetails.path,
       // }).then(() => {
