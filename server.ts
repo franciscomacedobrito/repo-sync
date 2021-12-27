@@ -1,8 +1,17 @@
-import {Socket} from "socket.io";
-import {getPackageInfo, getPackages, postPackage} from "./src/api/routing/packages";
-import * as fs from "fs";
-import {listenToLink} from "./src/controllers/links";
-import {GET_PACKAGES} from './src/app/modules/shared/constants/liveFunctions.constants';
+import {Socket} from 'socket.io';
+import {getPackageInfo, getPackageInfoById, getPackages, postPackage} from './src/api/routing/packages';
+import * as fs from 'fs';
+import {Observable} from 'rxjs';
+import {LinkInterface} from './src/app/modules/shared/interfaces/link.interface';
+import {PackageInterface} from './src/app/modules/shared/interfaces/package.interface';
+import {
+  createLink,
+  getFileContent,
+  getLinks,
+  getPackageInfoOnClient,
+  listenLink,
+  updatePackageOnClient
+} from './src/api/routing/links';
 
 const cors = require('cors')
 const express = require('express');
@@ -10,55 +19,78 @@ const app = express();
 const port = process.env.PORT || 4000;
 const http = require('http');
 const server = http.createServer(app);
-const { Server } = require("socket.io");
+const {Server} = require('socket.io');
 const io = new Server(server);
+const chokidar = require('chokidar');
 
 export interface ServerDataBase {
-  packages: any;
-  links: any;
+  packages: Partial<PackageInterface>[];
+  links: LinkInterface[];
 }
+
+let db: ServerDataBase;
 
 function run(): void {
+  app.use(cors());
 
-  let count = 0;
+  initiateDB().then(() => {
+    io.on('connection', (socket: Socket) => {
+      console.log('new client: ', socket.id);
+      socket.on('disconnect', () => {
+        console.log('client lost: ', socket.id);
+      })
+      //PACKAGES FEATURE
+      getPackages(socket);
+      getPackageInfo(socket);
+      getPackageInfoById(socket);
+      postPackage(socket);
+      //LINKS FEATURE
+      getLinks(socket);
+      listenLink(socket);
+      getPackageInfoOnClient(socket);
+      updatePackageOnClient(socket);
+      getFileContent(socket)
+      createLink(socket)
+      //APP FEATURES
+    });
 
-  app.use(cors())
+    app.options('*', cors())
 
-  io.on('connection', (socket: Socket) => {
-    console.log('new client: ', socket.id);
-    // getPackages(socket);
-    // getPackageInfo(socket);
-    // postPackage(socket);
-    socket.on('teste', async (data, callback) => {
-      setInterval(() => {
-        count++;
-        debugger;
-        callback(count)
-      }, 3000)
-    })
+    server.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
+
   });
+}
 
-  app.options('*', cors())
-
-  server.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
-
-  listenToLink({
-    id: "1",
-    active: true,
-    package: "321",
-    client: "1234"
-  }, (message: string) => {
-    console.log(message)
+function readDB() {
+  return new Promise(resolve => {
+    fs.readFile(`./db.json`,(err: any, data: any) => {
+      // @ts-ignore
+      db = JSON.parse(data);
+      resolve(db);
+    });
   })
 }
 
-export function getDataBase(): Promise<ServerDataBase> {
-  return new Promise(resolve => {
-    fs.readFile(`./db.json`, async (err: any, data: any) => {
-      // @ts-ignore
-      resolve(JSON.parse(data));
-    });
-  })
+let dbWatcher: any;
+
+async function initiateDB(): Promise<void> {
+  dbWatcher = chokidar.watch(`./db.json`, {
+    ignored: /^\./,
+    persistent: true,
+    ignoreInitial: true
+  });
+  await readDB();
+}
+
+export function getDataBase(): Observable<ServerDataBase> {
+  return new Observable((observer) => {
+    dbWatcher
+      .on('change', async () => {
+        await readDB();
+        observer.next(db);
+      })
+    observer.next(db);
+  });
 }
 
 run();

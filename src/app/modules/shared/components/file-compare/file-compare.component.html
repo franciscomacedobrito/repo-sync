@@ -1,0 +1,29 @@
+<div class="wrapper">
+  <div class="files-list">
+    <div (click)="compareFiles(dif)"
+         *ngFor="let dif of differences"
+         [ngClass]="{active: selectedFile === dif.name1}" class="file" mat mat-ripple>{{dif.name1}}</div>
+  </div>
+  <div class="r-panel">
+    <div class="toggle-wrapper">
+      <mat-slide-toggle (change)="sideChanged($event)" checked labelPosition="before" matTooltip="Side by Side"
+                        matTooltipPosition="below">
+        <mat-icon class="material-icons-outlined">compare</mat-icon>
+      </mat-slide-toggle>
+    </div>
+    <div class="table-wrapper" id="compare-wrapper">
+      <td-ngx-text-diff
+        (compareResults)="onCompareResults($event)"
+        *ngIf="!loading && left && right"
+        [format]="isSideToSide ? 'SideBySide' : 'LineByLine'"
+        [left]="left"
+        [loading]="loading"
+        [right]="right"
+        [showBtnToolbar]="false"
+        [showToolbar]="false"
+        outerContainerClass="compare-table"
+      >
+      </td-ngx-text-diff>
+    </div>
+  </div>
+</div>

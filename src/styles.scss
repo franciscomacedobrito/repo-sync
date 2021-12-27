@@ -1,9 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~angular-notifier/styles";
 @import '~@angular/material/theming';
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+$custom-typography: mat-typography-config(
+  $font-family: 'Poppins'
+);
+@include mat-core($custom-typography);
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Poppins, "Helvetica Neue", sans-serif;
+}
 
 app-page-template {
   display: block;
@@ -12,4 +24,122 @@ app-page-template {
 
 mat-stepper {
   border-radius: 5px;
+}
+
+.page-wrapper {
+  height: 100%;
+  width: calc(100% - 20px);
+
+  .add-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: #303030;
+
+    mat-icon {
+      font-weight: bold !important;
+    }
+  }
+}
+
+mat-dialog-container {
+  padding: 0 !important;
+}
+
+.compare-table {
+  background-color: transparent !important;
+  padding: 15px;
+}
+
+#compare-wrapper {
+  #td-left-compare-container {
+    margin-right: 5px;
+  }
+
+  .compare-table {
+    padding: 0;
+  }
+
+  table {
+    border: none !important;
+    background: none !important;
+    border-collapse: collapse !important;
+    font-family: monospace;
+    color: #d3d3d3;
+
+    .line-number-col.delete-row {
+      color: #ff9090 !important;
+    }
+
+    .line-number-col.insert-row {
+      color: #a0ffd1 !important;
+    }
+
+    .line-number-col {
+      border-right: 1px solid #0003 !important;
+    }
+
+    .insert-row {
+      background-color: #69f0ae38 !important;
+      color: #3ffda0 !important;
+
+      .highlight {
+        background-color: #00000029 !important;
+        border-radius: 5px;
+        padding: 0 6px;
+      }
+    }
+
+    .delete-row {
+      background-color: #f4433621 !important;
+      color: #ffc2be !important;
+
+      .highlight {
+        background-color: #ff8593 !important;
+        border-radius: 5px;
+        padding: 0 6px;
+        color: #3a0d09;
+      }
+    }
+
+    .line-number-col {
+      background-color: #00000017 !important;
+    }
+
+    //border-radius: 4px;
+    overflow: hidden;
+
+    .empty-row {
+      background-color: #ffffff0d !important;
+    }
+
+    .line-number-col-left {
+      background-color: #323232 !important;
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #0000009c;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  width: 20px;
+}
+
+.mat-radio-label-content {
+  width: 100% !important;
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {PackagesService} from "../../../shared/services/packages.service";
-import {PackageInterface} from "../../../shared/interfaces/package.interface";
+import {PackagesService} from '../../../shared/services/packages.service';
+import {PackageInterface} from '../../../shared/interfaces/package.interface';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatStepper} from '@angular/material/stepper';
 import {NotifierService} from 'angular-notifier';
@@ -26,7 +26,7 @@ export class PackageImporterComponent implements OnInit {
 
   ngOnInit(): void {
     this.pathFormControl = this._formBuilder.group({
-      path: ['', Validators.required],
+      path: ['', Validators.required]
     });
     this.pathFormControl.controls.path.setErrors({'validPath': true});
     this.pathFormControl.controls.path.updateValueAndValidity();
@@ -43,7 +43,11 @@ export class PackageImporterComponent implements OnInit {
         control.updateValueAndValidity();
         this.packageToAdd = packageToAdd;
         this.stepper.next();
-      }, () => {
+      }, (message) => {
+        this.notifier.show({
+          message: message ? message : 'Error',
+          type: 'error'
+        });
         control.setErrors({'validPath': true});
         control.enable();
       })

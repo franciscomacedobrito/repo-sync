@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PackageInterface} from "../../interfaces/package.interface";
-import {PackagesService} from "../../services/packages.service";
+import {PackageInterface} from '../../interfaces/package.interface';
+import {PackagesService} from '../../services/packages.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-package',
@@ -10,14 +11,19 @@ import {PackagesService} from "../../services/packages.service";
 export class PackageComponent implements OnInit {
   @Input('path') path: string = '';
   public pack: PackageInterface | undefined;
+  private subscription: Subscription | undefined;
 
   constructor(private packageService: PackagesService) {
   }
 
   ngOnInit(): void {
-    this.packageService.getPackageInfo(this.path).subscribe(data => {
+    this.subscription = this.packageService.getPackageInfo(this.path).subscribe(data => {
       this.pack = data
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 
 }

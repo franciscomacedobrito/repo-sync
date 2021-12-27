@@ -3,4 +3,26 @@ mat-list-item {
   border-radius: 10px;
   margin: 10px;
   border: solid 1px #ffffff14;
+  display: flex;
+  justify-content: space-between;
+
+  .line {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 3px !important;
+
+    .title {
+      color: white !important;
+    }
+
+    .cont {
+      margin-left: 11px;
+      color: #e1e1e1 !important;
+      font-size: 13px;
+    }
+  }
+
+  .sub-line {
+    color: #e1e1e1 !important;
+  }
 }

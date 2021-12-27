@@ -1,0 +1,8 @@
+<div class="page-wrapper">
+  <mat-list *ngIf="links">
+    <app-link *ngFor="let link of links" [link]="link"></app-link>
+  </mat-list>
+  <button (click)="addLink()" class="add-button" color="accent" mat-mini-fab>
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

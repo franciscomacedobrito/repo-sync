@@ -1,0 +1,51 @@
+<div *ngIf="linkDetails && link" class="link-item">
+  <app-sync-status
+    (doUpdate)="updateClient()"
+    [connected]="connected"
+    [differences]="linkDetails.differences"
+    [status]="status"
+    [visible]="connected && !link.active"
+  >
+  </app-sync-status>
+  <mat-list-item *ngIf="link" [ngClass]="{active: connected && link.active}">
+    <div *ngIf="linkDetails" mat-line>
+      <span class="title">{{linkDetails.client.name}}@{{linkDetails.client.version}}</span>
+    </div>
+    <div *ngIf="linkDetails && linkDetails.package" mat-line>
+      <span class="title sub">
+        {{linkDetails.package.name}}
+        @
+        <span [matTooltip]="versionToolTip"
+              [ngClass]="{error: !linkDetails.differences.sameVersion}"
+              matTooltipPosition="below"
+        >
+          {{linkDetails.package.version}}
+        </span>
+      </span>
+    </div>
+    <!--    <div mat-line class="diff-link" (click)="showDifferences()">see differences</div>-->
+    <div>
+      <button (click)="showDifferences()"
+              *ngIf="!linkDetails.differences.same"
+              [disabled]="!connected"
+              mat-icon-button
+              matTooltip="Show differences"
+              matTooltipPosition="below"
+      >
+        {{linkDetails.differences.differences}}
+        <mat-icon class="material-icons-outlined" style="font-size: 19px;color: #c3c3c3;">difference</mat-icon>
+      </button>
+      <button (click)="toggleLink()" [disabled]="!connected" mat-icon-button>
+        <mat-icon *ngIf="!link.active" [color]="connected ? 'accent' : ''" class="material-icons-outlined">play_arrow
+        </mat-icon>
+        <mat-icon *ngIf="link.active" [color]="connected ? 'warn' : ''" class="material-icons-outlined">pause</mat-icon>
+      </button>
+    </div>
+  </mat-list-item>
+</div>
+<!--<td-ngx-text-diff-->
+<!--  [left]="'batata'"-->
+<!--  [right]="'batatas frita ku arroz \n txeu kuzkuz'"-->
+<!--  (compareResults)="onCompareResults($event)"-->
+<!--&gt;-->
+<!--</td-ngx-text-diff>-->

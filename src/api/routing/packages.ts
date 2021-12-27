@@ -1,6 +1,17 @@
-import {GET_PACKAGE_INFO, GET_PACKAGES, POST_PACKAGE} from '../../app/modules/shared/constants/liveFunctions.constants';
-import {Socket} from "socket.io";
-import {createPackage, doGetPackageByPath, doGetPackages, listenToPackageByPath} from "../../controllers/packages";
+import {
+  GET_PACKAGE_INFO,
+  GET_PACKAGE_INFO_BY_ID,
+  GET_PACKAGES,
+  POST_PACKAGE
+} from '../../app/modules/shared/constants/liveFunctions.constants';
+import {Socket} from 'socket.io';
+import {
+  createPackage,
+  doGetPackageByPath,
+  doGetPackages,
+  listenToPackageById,
+  listenToPackageByPath
+} from '../../controllers/packages';
 
 const chokidar = require('chokidar');
 
@@ -18,8 +29,18 @@ export const getPackageInfo = (socket: Socket) => {
     const {filePath} = data;
 
     listenToPackageByPath(filePath, (packageInfo: any) => {
-      console.log("routing => listenToPackageByPath", callback )
-      debugger;
+      console.log('routing => listenToPackageByPath', callback)
+      callback(packageInfo);
+    })
+
+  });
+}
+
+export const getPackageInfoById = (socket: Socket) => {
+  socket.on(GET_PACKAGE_INFO_BY_ID, async (id: string, callback) => {
+
+    listenToPackageById(id, (packageInfo: any) => {
+      console.log('routing => getPackageInfoById', callback)
       callback(packageInfo);
     })
 
@@ -36,7 +57,7 @@ export const getPackages = (socket: Socket) => {
     const watcher = chokidar.watch(`db.json`, {
       ignored: /^\./,
       persistent: true,
-      ignoreInitial: true,
+      ignoreInitial: true
     });
     watcher
       .on('change', async () => {

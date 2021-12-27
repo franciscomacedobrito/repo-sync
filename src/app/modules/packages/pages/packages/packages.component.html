@@ -1,8 +1,26 @@
+<!--<div class="page-wrapper">-->
+<!--  <mat-list *ngIf="packages">-->
+<!--    <app-package *ngFor="let path of packages" [path]="path" ></app-package>-->
+<!--  </mat-list>-->
+<!--  <button mat-mini-fab (click)="addPackage()" class="add-button" color="accent">-->
+<!--    <mat-icon>add</mat-icon>-->
+<!--  </button>-->
+<!--</div>-->
+
+
 <div class="page-wrapper">
-  <mat-list *ngIf="packages">
-    <app-package *ngFor="let path of packages" [path]="path" ></app-package>
+  <mat-list *ngIf="packages && isSelectionMode">
+    <mat-radio-group (change)="onSelectPackage($event)" [(ngModel)]="selectedPackage">
+      <mat-radio-button *ngFor="let pack of packages" [disabled]="isDisabled(pack.id)" [value]="pack.id"
+                        class="example-radio-button">
+        <app-package [path]="pack.path"></app-package>
+      </mat-radio-button>
+    </mat-radio-group>
   </mat-list>
-  <button mat-mini-fab routerLink="add-package" class="add-button" color="primary">
+  <mat-list *ngIf="!isSelectionMode">
+    <app-package *ngFor="let pack of packages" [path]="pack.path"></app-package>
+  </mat-list>
+  <button (click)="addPackage()" class="add-button" color="accent" mat-mini-fab>
     <mat-icon>add</mat-icon>
   </button>
 </div>

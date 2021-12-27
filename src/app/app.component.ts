@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {NotifierService} from 'angular-notifier';
+import {CommonsService} from './modules/shared/services/commons.service';
 import {LiveFunctionService} from './modules/shared/services/liveFunction.service';
 
 @Component({
@@ -9,9 +11,29 @@ import {LiveFunctionService} from './modules/shared/services/liveFunction.servic
 export class AppComponent {
   title = 'repo-sync';
 
-  constructor(liveFunctionService: LiveFunctionService) {
-    liveFunctionService.socket.emit('teste', 'batata', (result: any) => {
-      console.log(result)
+  public connected = false;
+  public sideBarOpened = true;
+
+  constructor(private notifierService: NotifierService, private commonsService: CommonsService, private liveFunctionServices: LiveFunctionService) {
+
+    liveFunctionServices.connected$.subscribe(connected => this.connected = connected);
+
+    commonsService.getErrors().subscribe(data => {
+      this.notifierService.show({
+        message: data?.message ? data?.message : 'Error',
+        type: 'error'
+      });
     })
+
+    commonsService.getNotifications().subscribe(notification => {
+      this.notifierService.show({
+        message: notification.message,
+        type: notification.type
+      });
+    })
+  }
+
+  toggleConnection() {
+    this.liveFunctionServices.toggleConnection();
   }
 }

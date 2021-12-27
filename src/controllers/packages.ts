@@ -1,19 +1,21 @@
-import {getDataBase} from "../../server";
-import * as fs from "fs";
-import {v5 as uuid} from 'uuid';
-import simpleGit from "simple-git";
-import {PackageInterface} from "../app/modules/shared/interfaces/package.interface";
+import {getDataBase} from '../../server';
+import * as fs from 'fs';
+import {v4 as uuid} from 'uuid';
+import simpleGit from 'simple-git';
+import {PackageInterface} from '../app/modules/shared/interfaces/package.interface';
+import {Subscription} from 'rxjs';
+import {first} from 'rxjs/operators';
+
 const chokidar = require('chokidar');
 
-export async function doGetPackages(packages: any, callback: any): Promise<void> {
-  const db = await getDataBase();
-  if (JSON.stringify(JSON.stringify(packages) !== JSON.stringify(db.packages))) {
+export function doGetPackages(packages: any, callback: any): Subscription {
+  return getDataBase().subscribe(db => {
     callback(db.packages);
-  }
+  });
 }
 
-export async function doGetPackageById(packageId: string, callback: any) {
-  await doGetPackages(undefined, async (packages: any[]) => {
+export function doGetPackageById(packageId: string, callback: any) {
+  doGetPackages(undefined, async (packages: any[]) => {
     const tempPack = packages.find(pack => pack.id === packageId);
     try {
       callback(await doGetPackageByPath(tempPack.path));
@@ -23,10 +25,10 @@ export async function doGetPackageById(packageId: string, callback: any) {
   })
 }
 
-export async function listenToPackageById(packageId: string, callback: any, options?: any) {
-  await doGetPackages(undefined, async (packages: PackageInterface[]) => {
+export function listenToPackageById(packageId: string, callback: any, options?: any) {
+  doGetPackages(undefined, async (packages: PackageInterface[]) => {
     const tempPack = packages.find(pack => pack.id === packageId);
-    if(tempPack) {
+    if (tempPack) {
       await listenToPackageByPath(tempPack.path, (packageDetails: any) => {
         callback(packageDetails);
       }, options)
@@ -58,12 +60,12 @@ export function doGetPackageByPath(filePath?: string): Promise<any> {
 
 export async function listenToPackageByPath(path: string, callback: any, options?: any) {
   const watcher = chokidar.watch(`${path}`, {
-    ignored: /^\./,
+    ignored: [/yalc/, /node_modules/],
     persistent: true,
-    ignoreInitial: true,
+    ignoreInitial: true
   });
 
-  if(!options?.ignoreInitial) {
+  if (!options?.ignoreInitial) {
     try {
       callback(await doGetPackageByPath(path));
     } catch (e) {
@@ -72,7 +74,8 @@ export async function listenToPackageByPath(path: string, callback: any, options
   }
 
   watcher
-    .on('change', async () => {
+    .on('change', async (file: string) => {
+      console.log(file)
       try {
         callback(await doGetPackageByPath(path));
       } catch (e) {
@@ -83,10 +86,10 @@ export async function listenToPackageByPath(path: string, callback: any, options
 
 export async function createPackage(path: string, callback: any) {
   try {
-    const db = await getDataBase();
-    db.packages.push({path, id: uuid});
-    fs.writeFileSync(`./db.json`, JSON.stringify(db));
-    callback(db);
+    getDataBase().pipe(first()).subscribe(db => {
+      db.packages.push({path, id: uuid()});
+      fs.writeFile(`./db.json`, JSON.stringify(db), () => callback(db));
+    });
   } catch (e) {
     callback({error: e.message});
   }

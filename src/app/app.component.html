@@ -1,6 +1,20 @@
 <div class="side-nav-container">
+  <mat-toolbar>
+    <button (click)="sideBarOpened = !sideBarOpened" class="material-icons-rounded" mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="tool-bar-actions">
+      <button mat-icon-button>
+        <mat-icon class="material-icons-rounded">history</mat-icon>
+      </button>
+      <button (click)="toggleConnection()" mat-icon-button>
+        <mat-icon *ngIf="connected" class="material-icons-rounded" color="accent">wifi</mat-icon>
+        <mat-icon *ngIf="!connected" class="material-icons-rounded" color="warn">wifi_off</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
   <mat-sidenav-container autosize>
-    <mat-sidenav opened mode="side">
+    <mat-sidenav [opened]="sideBarOpened" mode="side">
       <app-side-menu></app-side-menu>
     </mat-sidenav>
     <mat-sidenav-content>

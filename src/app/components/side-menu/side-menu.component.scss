@@ -2,17 +2,21 @@
   height: 100%;
   display: flex;
   width: 170px;
+
   mat-list {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    margin-top: 40px;
+
     mat-list-item {
       cursor: pointer;
     }
   }
+
   .menu-active {
     background: rgba(255, 255, 255, 0.12);
+    color: #69f0ae;
   }
 }

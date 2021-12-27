@@ -1,0 +1,1266 @@
+diff --git a/node_modules/ngx-text-diff/__ivy_ngcc__/fesm2015/ngx-text-diff.js b/node_modules/ngx-text-diff/__ivy_ngcc__/fesm2015/ngx-text-diff.js
+new file mode 100644
+index 0000000..ea2043e
+--- /dev/null
++++ b/node_modules/ngx-text-diff/__ivy_ngcc__/fesm2015/ngx-text-diff.js
+@@ -0,0 +1,944 @@
++import { __decorate, __metadata, __awaiter } from 'tslib';
++import { ɵɵdefineInjectable, Injectable, ElementRef, Input, Directive, EventEmitter, ChangeDetectorRef, ViewChildren, QueryList, Output, Component, Pipe, NgModule } from '@angular/core';
++import { diff_match_patch, DIFF_INSERT, DIFF_DELETE, DIFF_EQUAL } from 'diff-match-patch';
++import { Observable } from 'rxjs';
++import { ScrollDispatcher, ScrollingModule } from '@angular/cdk/scrolling';
++import { CommonModule } from '@angular/common';
++import { FormsModule } from '@angular/forms';
++
++import * as ɵngcc0 from '@angular/core';
++import * as ɵngcc1 from '@angular/cdk/scrolling';
++import * as ɵngcc2 from '@angular/common';
++import * as ɵngcc3 from '@angular/forms';
++
++function NgxTextDiffComponent_div_1_div_1_Template(rf, ctx) { if (rf & 1) {
++    const _r7 = ɵngcc0.ɵɵgetCurrentView();
++    ɵngcc0.ɵɵelementStart(0, "div", 9);
++    ɵngcc0.ɵɵelementStart(1, "div", 10);
++    ɵngcc0.ɵɵelementStart(2, "label", 11);
++    ɵngcc0.ɵɵtext(3);
++    ɵngcc0.ɵɵelementStart(4, "input", 12);
++    ɵngcc0.ɵɵlistener("ngModelChange", function NgxTextDiffComponent_div_1_div_1_Template_input_ngModelChange_4_listener($event) { ɵngcc0.ɵɵrestoreView(_r7); const ctx_r6 = ɵngcc0.ɵɵnextContext(2); return ctx_r6.hideMatchingLinesChanged($event); });
++    ɵngcc0.ɵɵelementEnd();
++    ɵngcc0.ɵɵelement(5, "span", 13);
++    ɵngcc0.ɵɵelementEnd();
++    ɵngcc0.ɵɵelementEnd();
++    ɵngcc0.ɵɵelementEnd();
++} if (rf & 2) {
++    const ctx_r1 = ɵngcc0.ɵɵnextContext(2);
++    ɵngcc0.ɵɵproperty("ngClass", ctx_r1.toolbarClass)("ngStyle", ctx_r1.toolbarStyle);
++    ɵngcc0.ɵɵadvance(3);
++    ɵngcc0.ɵɵtextInterpolate1(" Only Show Lines with Differences (", ctx_r1.diffsCount, ") ");
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngModel", ctx_r1.hideMatchingLines);
++} }
++const _c0 = function (a0, a1) { return { active: a0, disabled: a1 }; };
++function NgxTextDiffComponent_div_1_div_2_button_2_Template(rf, ctx) { if (rf & 1) {
++    const _r11 = ɵngcc0.ɵɵgetCurrentView();
++    ɵngcc0.ɵɵelementStart(0, "button", 17);
++    ɵngcc0.ɵɵlistener("click", function NgxTextDiffComponent_div_1_div_2_button_2_Template_button_click_0_listener() { const restoredCtx = ɵngcc0.ɵɵrestoreView(_r11); const option_r9 = restoredCtx.$implicit; const ctx_r10 = ɵngcc0.ɵɵnextContext(3); return ctx_r10.setDiffTableFormat(option_r9.value); });
++    ɵngcc0.ɵɵtext(1);
++    ɵngcc0.ɵɵelementEnd();
++} if (rf & 2) {
++    const option_r9 = ctx.$implicit;
++    const ctx_r8 = ɵngcc0.ɵɵnextContext(3);
++    ɵngcc0.ɵɵproperty("ngClass", ɵngcc0.ɵɵpureFunction2(5, _c0, ctx_r8.format === option_r9.value, !!option_r9.disabled))("name", option_r9.name)("id", option_r9.id)("disabled", !!option_r9.disabled);
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵtextInterpolate1(" ", option_r9.label, " ");
++} }
++function NgxTextDiffComponent_div_1_div_2_Template(rf, ctx) { if (rf & 1) {
++    ɵngcc0.ɵɵelementStart(0, "div", 14);
++    ɵngcc0.ɵɵelementStart(1, "div", 15);
++    ɵngcc0.ɵɵtemplate(2, NgxTextDiffComponent_div_1_div_2_button_2_Template, 2, 8, "button", 16);
++    ɵngcc0.ɵɵelementEnd();
++    ɵngcc0.ɵɵelementEnd();
++} if (rf & 2) {
++    const ctx_r2 = ɵngcc0.ɵɵnextContext(2);
++    ɵngcc0.ɵɵadvance(2);
++    ɵngcc0.ɵɵproperty("ngForOf", ctx_r2.formatOptions);
++} }
++const _c1 = function (a0, a1) { return { "delete-row": a0, "empty-row": a1 }; };
++function NgxTextDiffComponent_div_1_div_4_tr_3_td_6_Template(rf, ctx) { if (rf & 1) {
++    ɵngcc0.ɵɵelementStart(0, "td", 24);
++    ɵngcc0.ɵɵelement(1, "span", 25);
++    ɵngcc0.ɵɵpipe(2, "formatLine");
++    ɵngcc0.ɵɵelementEnd();
++} if (rf & 2) {
++    const row_r13 = ɵngcc0.ɵɵnextContext().$implicit;
++    ɵngcc0.ɵɵproperty("ngClass", ɵngcc0.ɵɵpureFunction2(4, _c1, (row_r13.leftContent == null ? null : row_r13.leftContent.prefix) === "-", !(row_r13.leftContent == null ? null : row_r13.leftContent.lineContent)));
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("innerHTML", ɵngcc0.ɵɵpipeBind1(2, 2, row_r13.leftContent == null ? null : row_r13.leftContent.lineContent), ɵngcc0.ɵɵsanitizeHtml);
++} }
++const _c2 = function (a0) { return { highlight: a0 }; };
++function NgxTextDiffComponent_div_1_div_4_tr_3_td_7_span_1_Template(rf, ctx) { if (rf & 1) {
++    ɵngcc0.ɵɵelement(0, "span", 27);
++    ɵngcc0.ɵɵpipe(1, "formatLine");
++} if (rf & 2) {
++    const diff_r18 = ctx.$implicit;
++    ɵngcc0.ɵɵproperty("innerHTML", ɵngcc0.ɵɵpipeBind1(1, 2, diff_r18.content), ɵngcc0.ɵɵsanitizeHtml)("ngClass", ɵngcc0.ɵɵpureFunction1(4, _c2, diff_r18.isDiff));
++} }
++function NgxTextDiffComponent_div_1_div_4_tr_3_td_7_Template(rf, ctx) { if (rf & 1) {
++    ɵngcc0.ɵɵelementStart(0, "td", 24);
++    ɵngcc0.ɵɵtemplate(1, NgxTextDiffComponent_div_1_div_4_tr_3_td_7_span_1_Template, 2, 6, "span", 26);
++    ɵngcc0.ɵɵelementEnd();
++} if (rf & 2) {
++    const row_r13 = ɵngcc0.ɵɵnextContext().$implicit;
++    const ctx_r15 = ɵngcc0.ɵɵnextContext(3);
++    ɵngcc0.ɵɵproperty("ngClass", ɵngcc0.ɵɵpureFunction2(3, _c1, (row_r13.leftContent == null ? null : row_r13.leftContent.prefix) === "-", !(row_r13.leftContent == null ? null : row_r13.leftContent.lineContent)));
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngForOf", row_r13.leftContent == null ? null : row_r13.leftContent.lineDiffs)("ngForTrackBy", ctx_r15.trackDiffs);
++} }
++function NgxTextDiffComponent_div_1_div_4_tr_3_Template(rf, ctx) { if (rf & 1) {
++    ɵngcc0.ɵɵelementStart(0, "tr");
++    ɵngcc0.ɵɵelementStart(1, "td", 21);
++    ɵngcc0.ɵɵtext(2);
++    ɵngcc0.ɵɵelementEnd();
++    ɵngcc0.ɵɵelementStart(3, "td", 22);
++    ɵngcc0.ɵɵelementStart(4, "span");
++    ɵngcc0.ɵɵtext(5);
++    ɵngcc0.ɵɵelementEnd();
++    ɵngcc0.ɵɵelementEnd();
++    ɵngcc0.ɵɵtemplate(6, NgxTextDiffComponent_div_1_div_4_tr_3_td_6_Template, 3, 7, "td", 23);
++    ɵngcc0.ɵɵtemplate(7, NgxTextDiffComponent_div_1_div_4_tr_3_td_7_Template, 2, 6, "td", 23);
++    ɵngcc0.ɵɵelementEnd();
++} if (rf & 2) {
++    const row_r13 = ctx.$implicit;
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngClass", ɵngcc0.ɵɵpureFunction2(6, _c1, (row_r13.leftContent == null ? null : row_r13.leftContent.prefix) === "-", !(row_r13.leftContent == null ? null : row_r13.leftContent.lineContent)));
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵtextInterpolate1(" ", (row_r13.leftContent == null ? null : row_r13.leftContent.lineNumber) !== -1 ? row_r13.leftContent == null ? null : row_r13.leftContent.lineNumber : " ", " ");
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngClass", ɵngcc0.ɵɵpureFunction2(9, _c1, (row_r13.leftContent == null ? null : row_r13.leftContent.prefix) === "-", !(row_r13.leftContent == null ? null : row_r13.leftContent.lineContent)));
++    ɵngcc0.ɵɵadvance(2);
++    ɵngcc0.ɵɵtextInterpolate((row_r13.leftContent == null ? null : row_r13.leftContent.prefix) || " ");
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngIf", !row_r13.hasDiffs);
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngIf", row_r13.hasDiffs);
++} }
++function NgxTextDiffComponent_div_1_div_4_Template(rf, ctx) { if (rf & 1) {
++    ɵngcc0.ɵɵelementStart(0, "div", 18);
++    ɵngcc0.ɵɵelementStart(1, "table", 19);
++    ɵngcc0.ɵɵelementStart(2, "tbody");
++    ɵngcc0.ɵɵtemplate(3, NgxTextDiffComponent_div_1_div_4_tr_3_Template, 8, 12, "tr", 20);
++    ɵngcc0.ɵɵelementEnd();
++    ɵngcc0.ɵɵelementEnd();
++    ɵngcc0.ɵɵelementEnd();
++} if (rf & 2) {
++    const ctx_r3 = ɵngcc0.ɵɵnextContext(2);
++    ɵngcc0.ɵɵadvance(3);
++    ɵngcc0.ɵɵproperty("ngForOf", ctx_r3.filteredTableRows)("ngForTrackBy", ctx_r3.trackTableRows);
++} }
++const _c3 = function (a0, a1) { return { "insert-row": a0, "empty-row": a1 }; };
++function NgxTextDiffComponent_div_1_div_5_tr_3_td_6_Template(rf, ctx) { if (rf & 1) {
++    ɵngcc0.ɵɵelementStart(0, "td", 24);
++    ɵngcc0.ɵɵelement(1, "span", 25);
++    ɵngcc0.ɵɵpipe(2, "formatLine");
++    ɵngcc0.ɵɵelementEnd();
++} if (rf & 2) {
++    const row_r21 = ɵngcc0.ɵɵnextContext().$implicit;
++    ɵngcc0.ɵɵproperty("ngClass", ɵngcc0.ɵɵpureFunction2(4, _c3, (row_r21.rightContent == null ? null : row_r21.rightContent.prefix) === "+", !(row_r21.rightContent == null ? null : row_r21.rightContent.lineContent)));
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("innerHTML", ɵngcc0.ɵɵpipeBind1(2, 2, row_r21.rightContent == null ? null : row_r21.rightContent.lineContent), ɵngcc0.ɵɵsanitizeHtml);
++} }
++function NgxTextDiffComponent_div_1_div_5_tr_3_td_7_span_1_Template(rf, ctx) { if (rf & 1) {
++    ɵngcc0.ɵɵelement(0, "span", 27);
++    ɵngcc0.ɵɵpipe(1, "formatLine");
++} if (rf & 2) {
++    const diff_r26 = ctx.$implicit;
++    ɵngcc0.ɵɵproperty("innerHTML", ɵngcc0.ɵɵpipeBind1(1, 2, diff_r26.content), ɵngcc0.ɵɵsanitizeHtml)("ngClass", ɵngcc0.ɵɵpureFunction1(4, _c2, diff_r26.isDiff));
++} }
++function NgxTextDiffComponent_div_1_div_5_tr_3_td_7_Template(rf, ctx) { if (rf & 1) {
++    ɵngcc0.ɵɵelementStart(0, "td", 24);
++    ɵngcc0.ɵɵtemplate(1, NgxTextDiffComponent_div_1_div_5_tr_3_td_7_span_1_Template, 2, 6, "span", 26);
++    ɵngcc0.ɵɵelementEnd();
++} if (rf & 2) {
++    const row_r21 = ɵngcc0.ɵɵnextContext().$implicit;
++    const ctx_r23 = ɵngcc0.ɵɵnextContext(3);
++    ɵngcc0.ɵɵproperty("ngClass", ɵngcc0.ɵɵpureFunction2(3, _c3, (row_r21.rightContent == null ? null : row_r21.rightContent.prefix) === "+", !(row_r21.rightContent == null ? null : row_r21.rightContent.lineContent)));
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngForOf", row_r21.rightContent == null ? null : row_r21.rightContent.lineDiffs)("ngForTrackBy", ctx_r23.trackDiffs);
++} }
++function NgxTextDiffComponent_div_1_div_5_tr_3_Template(rf, ctx) { if (rf & 1) {
++    ɵngcc0.ɵɵelementStart(0, "tr");
++    ɵngcc0.ɵɵelementStart(1, "td", 21);
++    ɵngcc0.ɵɵtext(2);
++    ɵngcc0.ɵɵelementEnd();
++    ɵngcc0.ɵɵelementStart(3, "td", 22);
++    ɵngcc0.ɵɵelementStart(4, "span");
++    ɵngcc0.ɵɵtext(5);
++    ɵngcc0.ɵɵelementEnd();
++    ɵngcc0.ɵɵelementEnd();
++    ɵngcc0.ɵɵtemplate(6, NgxTextDiffComponent_div_1_div_5_tr_3_td_6_Template, 3, 7, "td", 23);
++    ɵngcc0.ɵɵtemplate(7, NgxTextDiffComponent_div_1_div_5_tr_3_td_7_Template, 2, 6, "td", 23);
++    ɵngcc0.ɵɵelementEnd();
++} if (rf & 2) {
++    const row_r21 = ctx.$implicit;
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngClass", ɵngcc0.ɵɵpureFunction2(6, _c3, (row_r21.rightContent == null ? null : row_r21.rightContent.prefix) === "+", !(row_r21.rightContent == null ? null : row_r21.rightContent.lineContent)));
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵtextInterpolate1(" ", (row_r21.rightContent == null ? null : row_r21.rightContent.lineNumber) !== -1 ? row_r21.rightContent == null ? null : row_r21.rightContent.lineNumber : " ", " ");
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngClass", ɵngcc0.ɵɵpureFunction2(9, _c3, (row_r21.rightContent == null ? null : row_r21.rightContent.prefix) === "+", !(row_r21.rightContent == null ? null : row_r21.rightContent.lineContent)));
++    ɵngcc0.ɵɵadvance(2);
++    ɵngcc0.ɵɵtextInterpolate((row_r21.rightContent == null ? null : row_r21.rightContent.prefix) || " ");
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngIf", !row_r21.hasDiffs);
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngIf", row_r21.hasDiffs);
++} }
++function NgxTextDiffComponent_div_1_div_5_Template(rf, ctx) { if (rf & 1) {
++    ɵngcc0.ɵɵelementStart(0, "div", 28);
++    ɵngcc0.ɵɵelementStart(1, "table", 19);
++    ɵngcc0.ɵɵelementStart(2, "tbody");
++    ɵngcc0.ɵɵtemplate(3, NgxTextDiffComponent_div_1_div_5_tr_3_Template, 8, 12, "tr", 20);
++    ɵngcc0.ɵɵelementEnd();
++    ɵngcc0.ɵɵelementEnd();
++    ɵngcc0.ɵɵelementEnd();
++} if (rf & 2) {
++    const ctx_r4 = ɵngcc0.ɵɵnextContext(2);
++    ɵngcc0.ɵɵadvance(3);
++    ɵngcc0.ɵɵproperty("ngForOf", ctx_r4.filteredTableRows)("ngForTrackBy", ctx_r4.trackTableRows);
++} }
++const _c4 = function (a0, a1) { return { "delete-row": a0, "insert-row": a1 }; };
++function NgxTextDiffComponent_div_1_div_6_tr_3_td_8_Template(rf, ctx) { if (rf & 1) {
++    ɵngcc0.ɵɵelementStart(0, "td", 24);
++    ɵngcc0.ɵɵelement(1, "span", 25);
++    ɵngcc0.ɵɵpipe(2, "formatLine");
++    ɵngcc0.ɵɵelementEnd();
++} if (rf & 2) {
++    const row_r29 = ɵngcc0.ɵɵnextContext().$implicit;
++    ɵngcc0.ɵɵproperty("ngClass", ɵngcc0.ɵɵpureFunction2(4, _c4, (row_r29.leftContent == null ? null : row_r29.leftContent.prefix) === "-", (row_r29.rightContent == null ? null : row_r29.rightContent.prefix) === "+"));
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("innerHTML", ɵngcc0.ɵɵpipeBind1(2, 2, row_r29.leftContent == null ? null : row_r29.leftContent.lineContent), ɵngcc0.ɵɵsanitizeHtml);
++} }
++function NgxTextDiffComponent_div_1_div_6_tr_3_td_9_span_1_Template(rf, ctx) { if (rf & 1) {
++    ɵngcc0.ɵɵelement(0, "span", 27);
++    ɵngcc0.ɵɵpipe(1, "formatLine");
++} if (rf & 2) {
++    const diff_r35 = ctx.$implicit;
++    ɵngcc0.ɵɵproperty("innerHTML", ɵngcc0.ɵɵpipeBind1(1, 2, diff_r35.content), ɵngcc0.ɵɵsanitizeHtml)("ngClass", ɵngcc0.ɵɵpureFunction1(4, _c2, diff_r35.isDiff));
++} }
++function NgxTextDiffComponent_div_1_div_6_tr_3_td_9_Template(rf, ctx) { if (rf & 1) {
++    ɵngcc0.ɵɵelementStart(0, "td", 24);
++    ɵngcc0.ɵɵtemplate(1, NgxTextDiffComponent_div_1_div_6_tr_3_td_9_span_1_Template, 2, 6, "span", 26);
++    ɵngcc0.ɵɵelementEnd();
++} if (rf & 2) {
++    const row_r29 = ɵngcc0.ɵɵnextContext().$implicit;
++    const ctx_r31 = ɵngcc0.ɵɵnextContext(3);
++    ɵngcc0.ɵɵproperty("ngClass", ɵngcc0.ɵɵpureFunction2(3, _c4, (row_r29.leftContent == null ? null : row_r29.leftContent.prefix) === "-", (row_r29.rightContent == null ? null : row_r29.rightContent.prefix) === "+"));
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngForOf", row_r29.leftContent == null ? null : row_r29.leftContent.lineDiffs)("ngForTrackBy", ctx_r31.trackDiffs);
++} }
++function NgxTextDiffComponent_div_1_div_6_tr_3_td_10_span_1_Template(rf, ctx) { if (rf & 1) {
++    ɵngcc0.ɵɵelement(0, "span", 27);
++    ɵngcc0.ɵɵpipe(1, "formatLine");
++} if (rf & 2) {
++    const diff_r38 = ctx.$implicit;
++    ɵngcc0.ɵɵproperty("innerHTML", ɵngcc0.ɵɵpipeBind1(1, 2, diff_r38.content), ɵngcc0.ɵɵsanitizeHtml)("ngClass", ɵngcc0.ɵɵpureFunction1(4, _c2, diff_r38.isDiff));
++} }
++function NgxTextDiffComponent_div_1_div_6_tr_3_td_10_Template(rf, ctx) { if (rf & 1) {
++    ɵngcc0.ɵɵelementStart(0, "td", 24);
++    ɵngcc0.ɵɵtemplate(1, NgxTextDiffComponent_div_1_div_6_tr_3_td_10_span_1_Template, 2, 6, "span", 26);
++    ɵngcc0.ɵɵelementEnd();
++} if (rf & 2) {
++    const row_r29 = ɵngcc0.ɵɵnextContext().$implicit;
++    const ctx_r32 = ɵngcc0.ɵɵnextContext(3);
++    ɵngcc0.ɵɵproperty("ngClass", ɵngcc0.ɵɵpureFunction2(3, _c4, (row_r29.leftContent == null ? null : row_r29.leftContent.prefix) === "-", (row_r29.rightContent == null ? null : row_r29.rightContent.prefix) === "+"));
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngForOf", row_r29.rightContent == null ? null : row_r29.rightContent.lineDiffs)("ngForTrackBy", ctx_r32.trackDiffs);
++} }
++function NgxTextDiffComponent_div_1_div_6_tr_3_Template(rf, ctx) { if (rf & 1) {
++    ɵngcc0.ɵɵelementStart(0, "tr");
++    ɵngcc0.ɵɵelementStart(1, "td", 30);
++    ɵngcc0.ɵɵtext(2);
++    ɵngcc0.ɵɵelementEnd();
++    ɵngcc0.ɵɵelementStart(3, "td", 31);
++    ɵngcc0.ɵɵtext(4);
++    ɵngcc0.ɵɵelementEnd();
++    ɵngcc0.ɵɵelementStart(5, "td", 22);
++    ɵngcc0.ɵɵelementStart(6, "span");
++    ɵngcc0.ɵɵtext(7);
++    ɵngcc0.ɵɵelementEnd();
++    ɵngcc0.ɵɵelementEnd();
++    ɵngcc0.ɵɵtemplate(8, NgxTextDiffComponent_div_1_div_6_tr_3_td_8_Template, 3, 7, "td", 23);
++    ɵngcc0.ɵɵtemplate(9, NgxTextDiffComponent_div_1_div_6_tr_3_td_9_Template, 2, 6, "td", 23);
++    ɵngcc0.ɵɵtemplate(10, NgxTextDiffComponent_div_1_div_6_tr_3_td_10_Template, 2, 6, "td", 23);
++    ɵngcc0.ɵɵelementEnd();
++} if (rf & 2) {
++    const row_r29 = ctx.$implicit;
++    ɵngcc0.ɵɵadvance(2);
++    ɵngcc0.ɵɵtextInterpolate(row_r29.leftContent == null ? null : row_r29.leftContent.lineNumber);
++    ɵngcc0.ɵɵadvance(2);
++    ɵngcc0.ɵɵtextInterpolate(row_r29.rightContent == null ? null : row_r29.rightContent.lineNumber);
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngClass", ɵngcc0.ɵɵpureFunction2(7, _c4, (row_r29.leftContent == null ? null : row_r29.leftContent.prefix) === "-", (row_r29.rightContent == null ? null : row_r29.rightContent.prefix) === "+"));
++    ɵngcc0.ɵɵadvance(2);
++    ɵngcc0.ɵɵtextInterpolate((row_r29.leftContent == null ? null : row_r29.leftContent.prefix) || (row_r29.rightContent == null ? null : row_r29.rightContent.prefix) || " ");
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngIf", !row_r29.hasDiffs);
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngIf", row_r29.hasDiffs && row_r29.leftContent && (row_r29.leftContent == null ? null : row_r29.leftContent.lineDiffs.length) !== 0);
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngIf", row_r29.hasDiffs && row_r29.rightContent && (row_r29.rightContent == null ? null : row_r29.rightContent.lineDiffs.length) !== 0);
++} }
++function NgxTextDiffComponent_div_1_div_6_Template(rf, ctx) { if (rf & 1) {
++    ɵngcc0.ɵɵelementStart(0, "div", 29);
++    ɵngcc0.ɵɵelementStart(1, "table", 19);
++    ɵngcc0.ɵɵelementStart(2, "tbody");
++    ɵngcc0.ɵɵtemplate(3, NgxTextDiffComponent_div_1_div_6_tr_3_Template, 11, 10, "tr", 20);
++    ɵngcc0.ɵɵelementEnd();
++    ɵngcc0.ɵɵelementEnd();
++    ɵngcc0.ɵɵelementEnd();
++} if (rf & 2) {
++    const ctx_r5 = ɵngcc0.ɵɵnextContext(2);
++    ɵngcc0.ɵɵadvance(3);
++    ɵngcc0.ɵɵproperty("ngForOf", ctx_r5.filteredTableRowsLineByLine)("ngForTrackBy", ctx_r5.trackTableRows);
++} }
++function NgxTextDiffComponent_div_1_Template(rf, ctx) { if (rf & 1) {
++    ɵngcc0.ɵɵelementStart(0, "div", 2);
++    ɵngcc0.ɵɵtemplate(1, NgxTextDiffComponent_div_1_div_1_Template, 6, 4, "div", 3);
++    ɵngcc0.ɵɵtemplate(2, NgxTextDiffComponent_div_1_div_2_Template, 3, 1, "div", 4);
++    ɵngcc0.ɵɵelementStart(3, "div", 5);
++    ɵngcc0.ɵɵtemplate(4, NgxTextDiffComponent_div_1_div_4_Template, 4, 2, "div", 6);
++    ɵngcc0.ɵɵtemplate(5, NgxTextDiffComponent_div_1_div_5_Template, 4, 2, "div", 7);
++    ɵngcc0.ɵɵtemplate(6, NgxTextDiffComponent_div_1_div_6_Template, 4, 2, "div", 8);
++    ɵngcc0.ɵɵelementEnd();
++    ɵngcc0.ɵɵelementEnd();
++} if (rf & 2) {
++    const ctx_r0 = ɵngcc0.ɵɵnextContext();
++    ɵngcc0.ɵɵproperty("ngClass", ctx_r0.outerContainerClass)("ngStyle", ctx_r0.outerContainerStyle);
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngIf", ctx_r0.showToolbar);
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngIf", ctx_r0.showToolbar && ctx_r0.showBtnToolbar);
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngClass", ctx_r0.compareRowsClass)("ngStyle", ctx_r0.compareRowsStyle);
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngIf", ctx_r0.format === "SideBySide");
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngIf", ctx_r0.format === "SideBySide");
++    ɵngcc0.ɵɵadvance(1);
++    ɵngcc0.ɵɵproperty("ngIf", ctx_r0.format === "LineByLine");
++} }
++function LoaderSpinnerComponent_div_0_Template(rf, ctx) { if (rf & 1) {
++    ɵngcc0.ɵɵelementStart(0, "div", 1);
++    ɵngcc0.ɵɵelement(1, "div");
++    ɵngcc0.ɵɵelement(2, "div");
++    ɵngcc0.ɵɵelement(3, "div");
++    ɵngcc0.ɵɵelement(4, "div");
++    ɵngcc0.ɵɵelement(5, "div");
++    ɵngcc0.ɵɵelement(6, "div");
++    ɵngcc0.ɵɵelement(7, "div");
++    ɵngcc0.ɵɵelement(8, "div");
++    ɵngcc0.ɵɵelementEnd();
++} }
++const isNil = val => val === undefined || val === null;
++const isEmpty = val => val == null || !(Object.keys(val) || val).length || (Object.keys(val) || val).length === 0;
++
++let NgxTextDiffService = class NgxTextDiffService {
++    constructor() {
++        this.initParser();
++    }
++    initParser() {
++        this.diffParser = new diff_match_patch();
++    }
++    getDiffsByLines(left, right) {
++        return new Promise((resolve, reject) => {
++            const a = this.diffParser.diff_linesToChars_(left, right);
++            const lineText1 = a.chars1;
++            const lineText2 = a.chars2;
++            const linesArray = a.lineArray;
++            const diffs = this.diffParser.diff_main(lineText1, lineText2, true);
++            this.diffParser.diff_charsToLines_(diffs, linesArray);
++            const rows = this.formatOutput(diffs);
++            if (!rows) {
++                reject('Error');
++            }
++            resolve(rows);
++        });
++    }
++    formatOutput(diffs) {
++        let lineLeft = 1;
++        let lineRight = 1;
++        return diffs.reduce((rows, diff) => {
++            if (!rows) {
++                rows = [];
++            }
++            const diffType = diff[0];
++            const diffValue = diff[1];
++            let leftDiffRow = null;
++            let rightDiffRow = null;
++            let leftContent = null;
++            let rightContent = null;
++            let rowTemp = null;
++            switch (diffType) {
++                case DIFF_EQUAL: // 0
++                    diffValue
++                        .split('\n')
++                        .filter((value, index, array) => {
++                        if (index === array.length - 1) {
++                            return !isEmpty(value);
++                        }
++                        return true;
++                    })
++                        .forEach(line => {
++                        leftContent = {
++                            lineNumber: lineLeft,
++                            lineContent: line,
++                            lineDiffs: [],
++                            prefix: ''
++                        };
++                        rightContent = {
++                            lineNumber: lineRight,
++                            lineContent: line,
++                            lineDiffs: [],
++                            prefix: ''
++                        };
++                        rowTemp = {
++                            leftContent,
++                            rightContent,
++                            belongTo: 'both',
++                            hasDiffs: false,
++                            numDiffs: 0,
++                        };
++                        rows.push(rowTemp);
++                        lineRight = lineRight + 1;
++                        lineLeft = lineLeft + 1;
++                    });
++                    break;
++                case DIFF_DELETE: // -1
++                    diffValue
++                        .split('\n')
++                        .filter((value, index, array) => {
++                        if (index === array.length - 1) {
++                            return !isEmpty(value);
++                        }
++                        return true;
++                    })
++                        .forEach(line => {
++                        rightDiffRow = rows.find(row => !row.leftContent && row.rightContent && row.rightContent.lineNumber === lineLeft && row.rightContent.prefix !== '');
++                        leftContent = {
++                            lineNumber: lineLeft,
++                            lineContent: line,
++                            lineDiffs: [{ content: line, isDiff: true }],
++                            prefix: '-'
++                        };
++                        if (rightDiffRow) {
++                            rightDiffRow.leftContent = leftContent;
++                            rightDiffRow.leftContent.lineDiffs = this.getDiffParts(rightDiffRow.leftContent.lineContent, rightDiffRow.rightContent.lineContent);
++                            rightDiffRow.rightContent.lineDiffs = this.getDiffParts(rightDiffRow.rightContent.lineContent, rightDiffRow.leftContent.lineContent);
++                            rightDiffRow.belongTo = 'both';
++                            rightDiffRow.numDiffs = this.countDiffs(rightDiffRow);
++                        }
++                        else {
++                            rows.push({
++                                leftContent,
++                                rightContent: null,
++                                hasDiffs: true,
++                                belongTo: 'left',
++                                numDiffs: 1,
++                            });
++                        }
++                        lineLeft = lineLeft + 1;
++                    });
++                    break;
++                case DIFF_INSERT: // 1
++                    diffValue
++                        .split('\n')
++                        .filter((value, index, array) => {
++                        if (index === array.length - 1) {
++                            return !isEmpty(value);
++                        }
++                        return true;
++                    })
++                        .forEach(line => {
++                        leftDiffRow = rows.find(row => row.leftContent && !row.rightContent && row.leftContent.lineNumber === lineRight && row.leftContent.prefix !== '');
++                        rightContent = {
++                            lineNumber: lineRight,
++                            lineContent: line,
++                            lineDiffs: [{ content: line, isDiff: true }],
++                            prefix: '+'
++                        };
++                        if (leftDiffRow) {
++                            leftDiffRow.rightContent = rightContent;
++                            leftDiffRow.leftContent.lineDiffs = this.getDiffParts(leftDiffRow.leftContent.lineContent, leftDiffRow.rightContent.lineContent);
++                            leftDiffRow.rightContent.lineDiffs = this.getDiffParts(leftDiffRow.rightContent.lineContent, leftDiffRow.leftContent.lineContent);
++                            leftDiffRow.belongTo = 'both';
++                            leftDiffRow.numDiffs = this.countDiffs(leftDiffRow);
++                        }
++                        else {
++                            rows.push({
++                                leftContent: null,
++                                rightContent,
++                                hasDiffs: true,
++                                belongTo: 'right',
++                                numDiffs: 1,
++                            });
++                        }
++                        lineRight = lineRight + 1;
++                    });
++                    break;
++            }
++            return rows;
++        }, []);
++    }
++    countDiffs(result) {
++        let diffCount = 0;
++        if (result.leftContent) {
++            diffCount += result.leftContent.lineDiffs.filter(diff => diff.isDiff).length;
++        }
++        if (result.leftContent) {
++            diffCount += result.rightContent.lineDiffs.filter(diff => diff.isDiff).length;
++        }
++        return diffCount;
++    }
++    getDiffParts(value, compareValue) {
++        const diffParts = [];
++        let i = 0;
++        let j = 0;
++        let shared = '';
++        let diff = '';
++        while (i < value.length) {
++            if (value[i] === compareValue[j] && j < compareValue.length) {
++                if (diff !== '') {
++                    diffParts.push({ content: diff, isDiff: true });
++                    diff = '';
++                }
++                shared += value[i];
++            }
++            else {
++                if (shared !== '') {
++                    diffParts.push({ content: shared, isDiff: false });
++                    shared = '';
++                }
++                diff += value[i];
++            }
++            i++;
++            j++;
++        }
++        if (diff !== '') {
++            diffParts.push({ content: diff, isDiff: true });
++        }
++        else if (shared !== '') {
++            diffParts.push({ content: shared, isDiff: false });
++        }
++        return diffParts;
++    }
++};
++NgxTextDiffService.ɵfac = function NgxTextDiffService_Factory(t) { return new (t || NgxTextDiffService)(); };
++NgxTextDiffService.ɵprov = ɵɵdefineInjectable({ factory: function NgxTextDiffService_Factory() { return new NgxTextDiffService(); }, token: NgxTextDiffService, providedIn: "root" });
++NgxTextDiffService = __decorate([ __metadata("design:paramtypes", [])
++], NgxTextDiffService);
++
++let ContainerDirective = class ContainerDirective {
++    constructor(_el) {
++        this._el = _el;
++        this.element = _el.nativeElement;
++    }
++};
++ContainerDirective.ɵfac = function ContainerDirective_Factory(t) { return new (t || ContainerDirective)(ɵngcc0.ɵɵdirectiveInject(ɵngcc0.ElementRef)); };
++ContainerDirective.ɵdir = /*@__PURE__*/ ɵngcc0.ɵɵdefineDirective({ type: ContainerDirective, selectors: [["", "tdContainer", ""]], inputs: { id: "id" } });
++ContainerDirective.ctorParameters = () => [
++    { type: ElementRef }
++];
++__decorate([
++    Input(),
++    __metadata("design:type", String)
++], ContainerDirective.prototype, "id", void 0);
++ContainerDirective = __decorate([ __metadata("design:paramtypes", [ElementRef])
++], ContainerDirective);
++
++let NgxTextDiffComponent = class NgxTextDiffComponent {
++    constructor(scrollService, diff, cd) {
++        this.scrollService = scrollService;
++        this.diff = diff;
++        this.cd = cd;
++        this._hideMatchingLines = false;
++        this.format = 'SideBySide';
++        this.left = '';
++        this.right = '';
++        this.loading = false;
++        this.showToolbar = true;
++        this.showBtnToolbar = true;
++        this.synchronizeScrolling = true;
++        this.compareResults = new EventEmitter();
++        this.subscriptions = [];
++        this.tableRows = [];
++        this.filteredTableRows = [];
++        this.tableRowsLineByLine = [];
++        this.filteredTableRowsLineByLine = [];
++        this.diffsCount = 0;
++        this.formatOptions = [
++            {
++                id: 'side-by-side',
++                name: 'side-by-side',
++                label: 'Side by Side',
++                value: 'SideBySide',
++                icon: 'la-code',
++            },
++            {
++                id: 'line-by-line',
++                name: 'line-by-line',
++                label: 'Line by Line',
++                value: 'LineByLine',
++                icon: 'la-file-text',
++            },
++        ];
++    }
++    get hideMatchingLines() {
++        return this._hideMatchingLines;
++    }
++    set hideMatchingLines(hide) {
++        this.hideMatchingLinesChanged(hide);
++    }
++    ngOnInit() {
++        this.loading = true;
++        if (this.diffContent) {
++            this.subscriptions.push(this.diffContent.subscribe(content => {
++                this.loading = true;
++                this.left = content.leftContent;
++                this.right = content.rightContent;
++                this.renderDiffs()
++                    .then(() => {
++                    this.cd.detectChanges();
++                    this.loading = false;
++                })
++                    .catch(() => (this.loading = false));
++            }));
++        }
++        this.renderDiffs()
++            .then(() => (this.loading = false))
++            .catch(e => (this.loading = false));
++    }
++    ngAfterViewInit() {
++        this.initScrollListener();
++    }
++    ngOnDestroy() {
++        if (this.subscriptions) {
++            this.subscriptions.forEach(subscription => subscription.unsubscribe());
++        }
++    }
++    hideMatchingLinesChanged(value) {
++        this._hideMatchingLines = value;
++        if (this.hideMatchingLines) {
++            this.filteredTableRows = this.tableRows.filter(row => (row.leftContent && row.leftContent.prefix === '-') || (row.rightContent && row.rightContent.prefix === '+'));
++            this.filteredTableRowsLineByLine = this.tableRowsLineByLine.filter(row => (row.leftContent && row.leftContent.prefix === '-') || (row.rightContent && row.rightContent.prefix === '+'));
++        }
++        else {
++            this.filteredTableRows = this.tableRows;
++            this.filteredTableRowsLineByLine = this.tableRowsLineByLine;
++        }
++    }
++    setDiffTableFormat(format) {
++        this.format = format;
++    }
++    renderDiffs() {
++        return __awaiter(this, void 0, void 0, function* () {
++            try {
++                this.diffsCount = 0;
++                this.tableRows = yield this.diff.getDiffsByLines(this.left, this.right);
++                this.tableRowsLineByLine = this.tableRows.reduce((tableLineByLine, row) => {
++                    if (!tableLineByLine) {
++                        tableLineByLine = [];
++                    }
++                    if (row.hasDiffs) {
++                        if (row.leftContent) {
++                            tableLineByLine.push({
++                                leftContent: row.leftContent,
++                                rightContent: null,
++                                belongTo: row.belongTo,
++                                hasDiffs: true,
++                                numDiffs: row.numDiffs,
++                            });
++                        }
++                        if (row.rightContent) {
++                            tableLineByLine.push({
++                                leftContent: null,
++                                rightContent: row.rightContent,
++                                belongTo: row.belongTo,
++                                hasDiffs: true,
++                                numDiffs: row.numDiffs,
++                            });
++                        }
++                    }
++                    else {
++                        tableLineByLine.push(row);
++                    }
++                    return tableLineByLine;
++                }, []);
++                this.diffsCount = this.tableRows.filter(row => row.hasDiffs).length;
++                this.filteredTableRows = this.tableRows;
++                this.filteredTableRowsLineByLine = this.tableRowsLineByLine;
++                this.emitCompareResultsEvent();
++            }
++            catch (e) {
++                throw e;
++            }
++        });
++    }
++    emitCompareResultsEvent() {
++        const diffResults = {
++            hasDiff: this.diffsCount > 0,
++            diffsCount: this.diffsCount,
++            rowsWithDiff: this.tableRows
++                .filter(row => row.hasDiffs)
++                .map(row => ({
++                leftLineNumber: row.leftContent ? row.leftContent.lineNumber : null,
++                rightLineNumber: row.rightContent ? row.rightContent.lineNumber : null,
++                numDiffs: row.numDiffs,
++            })),
++        };
++        this.compareResults.next(diffResults);
++    }
++    trackTableRows(index, row) {
++        return row && row.leftContent ? row.leftContent.lineContent : row && row.rightContent ? row.rightContent.lineContent : undefined;
++    }
++    trackDiffs(index, diff) {
++        return diff && diff.content ? diff.content : undefined;
++    }
++    initScrollListener() {
++        this.subscriptions.push(this.scrollService.scrolled().subscribe((scrollableEv) => {
++            if (scrollableEv && this.synchronizeScrolling) {
++                const scrollableId = scrollableEv.getElementRef().nativeElement.id;
++                const nonScrolledContainer = this.containers.find(container => container.id !== scrollableId);
++                if (nonScrolledContainer) {
++                    nonScrolledContainer.element.scrollTo({
++                        top: scrollableEv.measureScrollOffset('top'),
++                        left: scrollableEv.measureScrollOffset('left'),
++                    });
++                }
++            }
++        }));
++    }
++};
++NgxTextDiffComponent.ɵfac = function NgxTextDiffComponent_Factory(t) { return new (t || NgxTextDiffComponent)(ɵngcc0.ɵɵdirectiveInject(ɵngcc1.ScrollDispatcher), ɵngcc0.ɵɵdirectiveInject(NgxTextDiffService), ɵngcc0.ɵɵdirectiveInject(ɵngcc0.ChangeDetectorRef)); };
++NgxTextDiffComponent.ɵcmp = /*@__PURE__*/ ɵngcc0.ɵɵdefineComponent({ type: NgxTextDiffComponent, selectors: [["td-ngx-text-diff"]], viewQuery: function NgxTextDiffComponent_Query(rf, ctx) { if (rf & 1) {
++        ɵngcc0.ɵɵviewQuery(ContainerDirective, 5);
++    } if (rf & 2) {
++        let _t;
++        ɵngcc0.ɵɵqueryRefresh(_t = ɵngcc0.ɵɵloadQuery()) && (ctx.containers = _t);
++    } }, inputs: { format: "format", left: "left", right: "right", loading: "loading", showToolbar: "showToolbar", showBtnToolbar: "showBtnToolbar", synchronizeScrolling: "synchronizeScrolling", hideMatchingLines: "hideMatchingLines", diffContent: "diffContent", outerContainerClass: "outerContainerClass", outerContainerStyle: "outerContainerStyle", toolbarClass: "toolbarClass", toolbarStyle: "toolbarStyle", compareRowsClass: "compareRowsClass", compareRowsStyle: "compareRowsStyle" }, outputs: { compareResults: "compareResults" }, decls: 2, vars: 2, consts: [[3, "active"], ["class", "td-wrapper", 3, "ngClass", "ngStyle", 4, "ngIf"], [1, "td-wrapper", 3, "ngClass", "ngStyle"], [3, "ngClass", "ngStyle", 4, "ngIf"], ["class", "td-toolbar-select-format", 4, "ngIf"], [1, "td-table-wrapper", 3, "ngClass", "ngStyle"], ["class", "td-table-container side-by-side", "id", "td-left-compare-container", "tdContainer", "", "cdkScrollable", "", 4, "ngIf"], ["class", "td-table-container side-by-side", "id", "td-right-compare-container", "tdContainer", "", "cdkScrollable", "", 4, "ngIf"], ["class", "td-table-container line-by-line", 4, "ngIf"], [3, "ngClass", "ngStyle"], [1, "td-toolbar-show-diff"], [1, "td-checkbox-container"], ["type", "checkbox", "id", "showDiffs", 3, "ngModel", "ngModelChange"], [1, "checkmark"], [1, "td-toolbar-select-format"], ["data-toggle", "buttons", 1, "td-btn-group", "td-btn-group-toggle"], [3, "ngClass", "name", "id", "disabled", "click", 4, "ngFor", "ngForOf"], [3, "ngClass", "name", "id", "disabled", "click"], ["id", "td-left-compare-container", "tdContainer", "", "cdkScrollable", "", 1, "td-table-container", "side-by-side"], [1, "td-table"], [4, "ngFor", "ngForOf", "ngForTrackBy"], ["scope", "row", 1, "fit-column", "line-number-col", 3, "ngClass"], [1, "fit-column", "prefix-col", 3, "ngClass"], ["class", "content-col", 3, "ngClass", 4, "ngIf"], [1, "content-col", 3, "ngClass"], [3, "innerHTML"], [3, "innerHTML", "ngClass", 4, "ngFor", "ngForOf", "ngForTrackBy"], [3, "innerHTML", "ngClass"], ["id", "td-right-compare-container", "tdContainer", "", "cdkScrollable", "", 1, "td-table-container", "side-by-side"], [1, "td-table-container", "line-by-line"], ["scope", "row", 1, "fit-column", "line-number-col-left"], ["scope", "row", 1, "fit-column", "line-number-col"]], template: function NgxTextDiffComponent_Template(rf, ctx) { if (rf & 1) {
++        ɵngcc0.ɵɵelement(0, "td-loader-spinner", 0);
++        ɵngcc0.ɵɵtemplate(1, NgxTextDiffComponent_div_1_Template, 7, 9, "div", 1);
++    } if (rf & 2) {
++        ɵngcc0.ɵɵproperty("active", ctx.loading);
++        ɵngcc0.ɵɵadvance(1);
++        ɵngcc0.ɵɵproperty("ngIf", !ctx.loading);
++    } }, directives: function () { return [LoaderSpinnerComponent, ɵngcc2.NgIf, ɵngcc2.NgClass, ɵngcc2.NgStyle, ɵngcc3.CheckboxControlValueAccessor, ɵngcc3.NgControlStatus, ɵngcc3.NgModel, ɵngcc2.NgForOf, ContainerDirective, ɵngcc1.CdkScrollable]; }, pipes: function () { return [FormatLinePipe]; }, styles: [".td-wrapper[_ngcontent-%COMP%]{display:grid;width:100%;grid-row-gap:10px;grid-template-columns:repeat(2,[col] 50%);grid-template-rows:repeat(2,[row] auto);background-color:#fff;color:#444}.td-toolbar-show-diff[_ngcontent-%COMP%]{grid-column:1;grid-row:1}.td-toolbar-select-format[_ngcontent-%COMP%]{margin-left:auto;grid-column:2;grid-row:1}.td-table-container[_ngcontent-%COMP%]{grid-column:1/2;grid-row:2;width:100%;max-width:100%;overflow-x:auto}.td-table-wrapper[_ngcontent-%COMP%]{display:flex;width:200%}.td-table[_ngcontent-%COMP%]{border:1px solid #a9a9a9;max-height:50vh;width:100%;max-width:100%}.fit-column[_ngcontent-%COMP%]{width:1px;white-space:nowrap}.line-number-col[_ngcontent-%COMP%]{position:relative;position:-webkit-sticky;position:sticky;left:0;top:auto;border-right:1px solid #ddd;color:#999;text-align:right;background-color:#f7f7f7;padding-left:10px;padding-right:10px;font-size:87.5%}.line-number-col-left[_ngcontent-%COMP%]{color:#999;padding-left:10px;padding-right:10px;text-align:right;background-color:#f7f7f7;font-size:87.5%}.insert-row[_ngcontent-%COMP%], .insert-row[_ngcontent-%COMP%] > .line-number-col[_ngcontent-%COMP%]{background-color:#dfd;border-color:#b4e2b4}.delete-row[_ngcontent-%COMP%], .delete-row[_ngcontent-%COMP%] > .line-number-col[_ngcontent-%COMP%]{background-color:#fee8e9;border-color:#e9aeae}.empty-row[_ngcontent-%COMP%]{background-color:#f7f7f7;height:24px}.td-table[_ngcontent-%COMP%]   td[_ngcontent-%COMP%]{border-top:0;padding-top:0;padding-bottom:0;white-space:nowrap;max-width:50%}pre[_ngcontent-%COMP%]{margin-bottom:0}td.content-col[_ngcontent-%COMP%]{padding:0;margin:0;line-height:24px}td.prefix-col[_ngcontent-%COMP%]{padding-left:10px;padding-right:10px;line-height:24px}.td-btn-group[_ngcontent-%COMP%]{border-radius:4px}.td-btn-group[_ngcontent-%COMP%]   button[_ngcontent-%COMP%]{background-color:rgba(23,162,184,.7);border:1px solid #17a2b8;color:#fff;cursor:pointer;float:left}.td-btn-group[_ngcontent-%COMP%]   button[_ngcontent-%COMP%]:not(:last-child){border-right:none}.td-btn-group[_ngcontent-%COMP%]   button[_ngcontent-%COMP%]:first-child{-webkit-border-top-left-radius:4px;-webkit-border-bottom-left-radius:4px;-moz-border-radius-topleft:4px;-moz-border-radius-bottomleft:4px;border-top-left-radius:4px;border-bottom-left-radius:4px}.td-btn-group[_ngcontent-%COMP%]   button[_ngcontent-%COMP%]:last-child{-webkit-border-top-right-radius:4px;-webkit-border-bottom-right-radius:4px;-moz-border-radius-topright:4px;-moz-border-radius-bottomright:4px;border-top-right-radius:4px;border-bottom-right-radius:4px}.td-btn-group[_ngcontent-%COMP%]:after{content:'';clear:both;display:table}.td-btn-group[_ngcontent-%COMP%]   button.active[_ngcontent-%COMP%], .td-btn-group[_ngcontent-%COMP%]   button[_ngcontent-%COMP%]:hover{background-color:#17a2b8}.td-checkbox-container[_ngcontent-%COMP%]{display:block;position:relative;padding-left:21px;margin-bottom:0;cursor:pointer;font-size:16px;line-height:28px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.td-checkbox-container[_ngcontent-%COMP%]   input[_ngcontent-%COMP%]{position:absolute;opacity:0;cursor:pointer;height:0;width:0}.checkmark[_ngcontent-%COMP%]{position:absolute;top:7px;left:0;height:16px;width:16px;background-color:#eee}.td-checkbox-container[_ngcontent-%COMP%]:hover   input[_ngcontent-%COMP%] ~ .checkmark[_ngcontent-%COMP%]{background-color:#ccc}.td-checkbox-container[_ngcontent-%COMP%]   input[_ngcontent-%COMP%]:checked ~ .checkmark[_ngcontent-%COMP%]{background-color:#17a2b8}.checkmark[_ngcontent-%COMP%]:after{content:\"\";position:absolute;display:none}.td-checkbox-container[_ngcontent-%COMP%]   input[_ngcontent-%COMP%]:checked ~ .checkmark[_ngcontent-%COMP%]:after{display:block}.td-checkbox-container[_ngcontent-%COMP%]   .checkmark[_ngcontent-%COMP%]:after{left:5px;top:3px;width:5px;height:10px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg)}.insert-row[_ngcontent-%COMP%] > .highlight[_ngcontent-%COMP%]{background-color:#acf2bd!important}.delete-row[_ngcontent-%COMP%] > .highlight[_ngcontent-%COMP%]{background-color:#fdb8c0!important}"] });
++NgxTextDiffComponent.ctorParameters = () => [
++    { type: ScrollDispatcher },
++    { type: NgxTextDiffService },
++    { type: ChangeDetectorRef }
++];
++__decorate([
++    ViewChildren(ContainerDirective),
++    __metadata("design:type", QueryList)
++], NgxTextDiffComponent.prototype, "containers", void 0);
++__decorate([
++    Input(),
++    __metadata("design:type", String)
++], NgxTextDiffComponent.prototype, "format", void 0);
++__decorate([
++    Input(),
++    __metadata("design:type", Object)
++], NgxTextDiffComponent.prototype, "left", void 0);
++__decorate([
++    Input(),
++    __metadata("design:type", Object)
++], NgxTextDiffComponent.prototype, "right", void 0);
++__decorate([
++    Input(),
++    __metadata("design:type", Observable)
++], NgxTextDiffComponent.prototype, "diffContent", void 0);
++__decorate([
++    Input(),
++    __metadata("design:type", Object)
++], NgxTextDiffComponent.prototype, "loading", void 0);
++__decorate([
++    Input(),
++    __metadata("design:type", Object)
++], NgxTextDiffComponent.prototype, "showToolbar", void 0);
++__decorate([
++    Input(),
++    __metadata("design:type", Object)
++], NgxTextDiffComponent.prototype, "showBtnToolbar", void 0);
++__decorate([
++    Input(),
++    __metadata("design:type", Boolean),
++    __metadata("design:paramtypes", [Boolean])
++], NgxTextDiffComponent.prototype, "hideMatchingLines", null);
++__decorate([
++    Input(),
++    __metadata("design:type", String)
++], NgxTextDiffComponent.prototype, "outerContainerClass", void 0);
++__decorate([
++    Input(),
++    __metadata("design:type", Object)
++], NgxTextDiffComponent.prototype, "outerContainerStyle", void 0);
++__decorate([
++    Input(),
++    __metadata("design:type", String)
++], NgxTextDiffComponent.prototype, "toolbarClass", void 0);
++__decorate([
++    Input(),
++    __metadata("design:type", Object)
++], NgxTextDiffComponent.prototype, "toolbarStyle", void 0);
++__decorate([
++    Input(),
++    __metadata("design:type", String)
++], NgxTextDiffComponent.prototype, "compareRowsClass", void 0);
++__decorate([
++    Input(),
++    __metadata("design:type", Object)
++], NgxTextDiffComponent.prototype, "compareRowsStyle", void 0);
++__decorate([
++    Input(),
++    __metadata("design:type", Object)
++], NgxTextDiffComponent.prototype, "synchronizeScrolling", void 0);
++__decorate([
++    Output(),
++    __metadata("design:type", Object)
++], NgxTextDiffComponent.prototype, "compareResults", void 0);
++NgxTextDiffComponent = __decorate([ __metadata("design:paramtypes", [ScrollDispatcher, NgxTextDiffService, ChangeDetectorRef])
++], NgxTextDiffComponent);
++
++let LoaderSpinnerComponent = class LoaderSpinnerComponent {
++    constructor() {
++        this.active = false;
++    }
++    ngOnInit() { }
++};
++LoaderSpinnerComponent.ɵfac = function LoaderSpinnerComponent_Factory(t) { return new (t || LoaderSpinnerComponent)(); };
++LoaderSpinnerComponent.ɵcmp = /*@__PURE__*/ ɵngcc0.ɵɵdefineComponent({ type: LoaderSpinnerComponent, selectors: [["td-loader-spinner"]], inputs: { active: "active" }, decls: 1, vars: 1, consts: [["class", "td-loading-roller", 4, "ngIf"], [1, "td-loading-roller"]], template: function LoaderSpinnerComponent_Template(rf, ctx) { if (rf & 1) {
++        ɵngcc0.ɵɵtemplate(0, LoaderSpinnerComponent_div_0_Template, 9, 0, "div", 0);
++    } if (rf & 2) {
++        ɵngcc0.ɵɵproperty("ngIf", ctx.active);
++    } }, directives: [ɵngcc2.NgIf], styles: [".td-loading-roller[_ngcontent-%COMP%]{display:inline-block;position:relative;width:64px;height:64px}.td-loading-roller[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]{-webkit-animation:1.2s cubic-bezier(.5,0,.5,1) infinite lds-roller;animation:1.2s cubic-bezier(.5,0,.5,1) infinite lds-roller;transform-origin:32px 32px}.td-loading-roller[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]:after{content:\" \";display:block;position:absolute;width:6px;height:6px;border-radius:50%;background:#000;margin:-3px 0 0 -3px}.td-loading-roller[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]:nth-child(1){-webkit-animation-delay:-36ms;animation-delay:-36ms}.td-loading-roller[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]:nth-child(1):after{top:50px;left:50px}.td-loading-roller[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]:nth-child(2){-webkit-animation-delay:-72ms;animation-delay:-72ms}.td-loading-roller[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]:nth-child(2):after{top:54px;left:45px}.td-loading-roller[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]:nth-child(3){-webkit-animation-delay:-108ms;animation-delay:-108ms}.td-loading-roller[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]:nth-child(3):after{top:57px;left:39px}.td-loading-roller[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]:nth-child(4){-webkit-animation-delay:-144ms;animation-delay:-144ms}.td-loading-roller[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]:nth-child(4):after{top:58px;left:32px}.td-loading-roller[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]:nth-child(5){-webkit-animation-delay:-.18s;animation-delay:-.18s}.td-loading-roller[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]:nth-child(5):after{top:57px;left:25px}.td-loading-roller[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]:nth-child(6){-webkit-animation-delay:-216ms;animation-delay:-216ms}.td-loading-roller[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]:nth-child(6):after{top:54px;left:19px}.td-loading-roller[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]:nth-child(7){-webkit-animation-delay:-252ms;animation-delay:-252ms}.td-loading-roller[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]:nth-child(7):after{top:50px;left:14px}.td-loading-roller[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]:nth-child(8){-webkit-animation-delay:-288ms;animation-delay:-288ms}.td-loading-roller[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]:nth-child(8):after{top:45px;left:10px}@-webkit-keyframes lds-roller{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}@keyframes lds-roller{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}"] });
++__decorate([
++    Input(),
++    __metadata("design:type", Object)
++], LoaderSpinnerComponent.prototype, "active", void 0);
++LoaderSpinnerComponent = __decorate([ __metadata("design:paramtypes", [])
++], LoaderSpinnerComponent);
++
++let FormatLinePipe = class FormatLinePipe {
++    transform(line, diffs) {
++        if (!line) {
++            return ' ';
++        }
++        if (!!diffs && diffs.length > 0) {
++            /*diffs.forEach(diff => {
++              line = line.replace(diff, `<span class="highli">${diff}</span>`);
++            });*/
++        }
++        return line
++            .replace(/&/g, '&amp;')
++            .replace(/</g, '&lt;')
++            .replace(/>/g, '&gt;')
++            .replace(/"/g, '&quot;')
++            .replace(/ /g, '&nbsp;');
++    }
++};
++FormatLinePipe.ɵfac = function FormatLinePipe_Factory(t) { return new (t || FormatLinePipe)(); };
++FormatLinePipe.ɵpipe = /*@__PURE__*/ ɵngcc0.ɵɵdefinePipe({ name: "formatLine", type: FormatLinePipe, pure: true });
++
++let NgxTextDiffModule = class NgxTextDiffModule {
++};
++NgxTextDiffModule.ɵfac = function NgxTextDiffModule_Factory(t) { return new (t || NgxTextDiffModule)(); };
++NgxTextDiffModule.ɵmod = /*@__PURE__*/ ɵngcc0.ɵɵdefineNgModule({ type: NgxTextDiffModule });
++NgxTextDiffModule.ɵinj = /*@__PURE__*/ ɵngcc0.ɵɵdefineInjector({ imports: [[CommonModule, FormsModule, ScrollingModule]] });
++(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵngcc0.ɵsetClassMetadata(NgxTextDiffService, [{
++        type: Injectable,
++        args: [{
++                providedIn: 'root'
++            }]
++    }], function () { return []; }, null); })();
++(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵngcc0.ɵsetClassMetadata(ContainerDirective, [{
++        type: Directive,
++        args: [{
++                selector: '[tdContainer]'
++            }]
++    }], function () { return [{ type: ɵngcc0.ElementRef }]; }, { id: [{
++            type: Input
++        }] }); })();
++(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵngcc0.ɵsetClassMetadata(NgxTextDiffComponent, [{
++        type: Component,
++        args: [{
++                selector: 'td-ngx-text-diff',
++                template: "<td-loader-spinner [active]=\"loading\"></td-loader-spinner>\r\n<div class=\"td-wrapper\" [ngClass]=\"outerContainerClass\" [ngStyle]=\"outerContainerStyle\" *ngIf=\"!loading\">\r\n\r\n  <div [ngClass]=\"toolbarClass\" [ngStyle]=\"toolbarStyle\" *ngIf=\"showToolbar\">\r\n    <div class=\"td-toolbar-show-diff\">\r\n      <label class=\"td-checkbox-container\">\r\n        Only Show Lines with Differences ({{ diffsCount }})\r\n        <input type=\"checkbox\" id=\"showDiffs\" [ngModel]=\"hideMatchingLines\" (ngModelChange)=\"hideMatchingLinesChanged($event)\" />\r\n        <span class=\"checkmark\"></span>\r\n      </label>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"td-toolbar-select-format\" *ngIf=\"showToolbar && showBtnToolbar\">\r\n    <div class=\"td-btn-group td-btn-group-toggle\" data-toggle=\"buttons\">\r\n      <button\r\n        *ngFor=\"let option of formatOptions\"\r\n        [ngClass]=\"{ active: format === option.value, disabled: !!option.disabled }\"\r\n        [name]=\"option.name\"\r\n        [id]=\"option.id\"\r\n        [disabled]=\"!!option.disabled\"\r\n        (click)=\"setDiffTableFormat(option.value)\"\r\n      >\r\n        {{ option.label }}\r\n      </button>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"td-table-wrapper\" [ngClass]=\"compareRowsClass\" [ngStyle]=\"compareRowsStyle\">\r\n    <!-- Right side-by-side -->\r\n    <div class=\"td-table-container side-by-side\" *ngIf=\"format === 'SideBySide'\" id=\"td-left-compare-container\" tdContainer cdkScrollable>\r\n      <table class=\"td-table\">\r\n        <tbody>\r\n          <tr *ngFor=\"let row of filteredTableRows; trackBy: trackTableRows\">\r\n            <td\r\n              scope=\"row\"\r\n              class=\"fit-column line-number-col\"\r\n              [ngClass]=\"{ 'delete-row': row.leftContent?.prefix === '-', 'empty-row': !row.leftContent?.lineContent }\"\r\n            >\r\n              {{ row.leftContent?.lineNumber !== -1 ? row.leftContent?.lineNumber : ' ' }}\r\n            </td>\r\n            <td\r\n              class=\"fit-column prefix-col\"\r\n              [ngClass]=\"{ 'delete-row': row.leftContent?.prefix === '-', 'empty-row': !row.leftContent?.lineContent }\"\r\n            >\r\n              <span>{{ row.leftContent?.prefix || ' ' }}</span>\r\n            </td>\r\n            <td\r\n              class=\"content-col\"\r\n              [ngClass]=\"{ 'delete-row': row.leftContent?.prefix === '-', 'empty-row': !row.leftContent?.lineContent }\"\r\n              *ngIf=\"!row.hasDiffs\"\r\n            >\r\n              <span [innerHTML]=\"row.leftContent?.lineContent | formatLine\"></span>\r\n            </td>\r\n            <td\r\n              class=\"content-col\"\r\n              [ngClass]=\"{ 'delete-row': row.leftContent?.prefix === '-', 'empty-row': !row.leftContent?.lineContent }\"\r\n              *ngIf=\"row.hasDiffs\"\r\n            >\r\n              <span\r\n                [innerHTML]=\"diff.content | formatLine\"\r\n                [ngClass]=\"{ highlight: diff.isDiff }\"\r\n                *ngFor=\"let diff of row.leftContent?.lineDiffs; trackBy: trackDiffs\"\r\n              ></span>\r\n            </td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n    <!-- Left side-by-side -->\r\n    <div class=\"td-table-container side-by-side\" *ngIf=\"format === 'SideBySide'\" id=\"td-right-compare-container\" tdContainer cdkScrollable>\r\n      <table class=\"td-table\">\r\n        <tbody>\r\n          <tr *ngFor=\"let row of filteredTableRows; trackBy: trackTableRows\">\r\n            <td\r\n              scope=\"row\"\r\n              class=\"fit-column line-number-col\"\r\n              [ngClass]=\"{ 'insert-row': row.rightContent?.prefix === '+', 'empty-row': !row.rightContent?.lineContent }\"\r\n            >\r\n              {{ row.rightContent?.lineNumber !== -1 ? row.rightContent?.lineNumber : ' ' }}\r\n            </td>\r\n            <td\r\n              class=\"fit-column prefix-col\"\r\n              [ngClass]=\"{ 'insert-row': row.rightContent?.prefix === '+', 'empty-row': !row.rightContent?.lineContent }\"\r\n            >\r\n              <span>{{ row.rightContent?.prefix || ' ' }}</span>\r\n            </td>\r\n            <td\r\n              class=\"content-col\"\r\n              [ngClass]=\"{ 'insert-row': row.rightContent?.prefix === '+', 'empty-row': !row.rightContent?.lineContent }\"\r\n              *ngIf=\"!row.hasDiffs\"\r\n            >\r\n              <span [innerHTML]=\"row.rightContent?.lineContent | formatLine\"></span>\r\n            </td>\r\n            <td\r\n              class=\"content-col\"\r\n              [ngClass]=\"{ 'insert-row': row.rightContent?.prefix === '+', 'empty-row': !row.rightContent?.lineContent }\"\r\n              *ngIf=\"row.hasDiffs\"\r\n            >\r\n              <span\r\n                [innerHTML]=\"diff.content | formatLine\"\r\n                [ngClass]=\"{ highlight: diff.isDiff }\"\r\n                *ngFor=\"let diff of row.rightContent?.lineDiffs; trackBy: trackDiffs\"\r\n              ></span>\r\n            </td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n    <!-- Line By Line - combined table -->\r\n    <div class=\"td-table-container line-by-line\" *ngIf=\"format === 'LineByLine'\">\r\n      <table class=\"td-table\">\r\n        <tbody>\r\n          <tr *ngFor=\"let row of filteredTableRowsLineByLine; trackBy: trackTableRows\">\r\n            <td scope=\"row\" class=\"fit-column line-number-col-left\">{{ row.leftContent?.lineNumber }}</td>\r\n            <td scope=\"row\" class=\"fit-column line-number-col\">{{ row.rightContent?.lineNumber }}</td>\r\n            <td\r\n              class=\"fit-column prefix-col\"\r\n              [ngClass]=\"{ 'delete-row': row.leftContent?.prefix === '-', 'insert-row': row.rightContent?.prefix === '+' }\"\r\n            >\r\n              <span>{{ row.leftContent?.prefix || row.rightContent?.prefix || ' ' }}</span>\r\n            </td>\r\n            <td\r\n              class=\"content-col\"\r\n              [ngClass]=\"{ 'delete-row': row.leftContent?.prefix === '-', 'insert-row': row.rightContent?.prefix === '+' }\"\r\n              *ngIf=\"!row.hasDiffs\"\r\n            >\r\n              <span [innerHTML]=\"row.leftContent?.lineContent | formatLine\"></span>\r\n            </td>\r\n            <td\r\n              class=\"content-col\"\r\n              [ngClass]=\"{ 'delete-row': row.leftContent?.prefix === '-', 'insert-row': row.rightContent?.prefix === '+' }\"\r\n              *ngIf=\"row.hasDiffs && row.leftContent && row.leftContent?.lineDiffs.length !== 0\"\r\n            >\r\n              <span\r\n                [innerHTML]=\"diff.content | formatLine\"\r\n                [ngClass]=\"{ highlight: diff.isDiff }\"\r\n                *ngFor=\"let diff of row.leftContent?.lineDiffs; trackBy: trackDiffs\"\r\n              ></span>\r\n            </td>\r\n            <td\r\n              class=\"content-col\"\r\n              [ngClass]=\"{ 'delete-row': row.leftContent?.prefix === '-', 'insert-row': row.rightContent?.prefix === '+' }\"\r\n              *ngIf=\"row.hasDiffs && row.rightContent && row.rightContent?.lineDiffs.length !== 0\"\r\n            >\r\n              <span\r\n                [innerHTML]=\"diff.content | formatLine\"\r\n                [ngClass]=\"{ highlight: diff.isDiff }\"\r\n                *ngFor=\"let diff of row.rightContent?.lineDiffs; trackBy: trackDiffs\"\r\n              ></span>\r\n            </td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n  </div>\r\n</div>\r\n",
++                styles: [".td-wrapper{display:grid;width:100%;grid-row-gap:10px;grid-template-columns:repeat(2,[col] 50%);grid-template-rows:repeat(2,[row] auto);background-color:#fff;color:#444}.td-toolbar-show-diff{grid-column:1;grid-row:1}.td-toolbar-select-format{margin-left:auto;grid-column:2;grid-row:1}.td-table-container{grid-column:1/2;grid-row:2;width:100%;max-width:100%;overflow-x:auto}.td-table-wrapper{display:flex;width:200%}.td-table{border:1px solid #a9a9a9;max-height:50vh;width:100%;max-width:100%}.fit-column{width:1px;white-space:nowrap}.line-number-col{position:relative;position:-webkit-sticky;position:sticky;left:0;top:auto;border-right:1px solid #ddd;color:#999;text-align:right;background-color:#f7f7f7;padding-left:10px;padding-right:10px;font-size:87.5%}.line-number-col-left{color:#999;padding-left:10px;padding-right:10px;text-align:right;background-color:#f7f7f7;font-size:87.5%}.insert-row,.insert-row>.line-number-col{background-color:#dfd;border-color:#b4e2b4}.delete-row,.delete-row>.line-number-col{background-color:#fee8e9;border-color:#e9aeae}.empty-row{background-color:#f7f7f7;height:24px}.td-table td{border-top:0;padding-top:0;padding-bottom:0;white-space:nowrap;max-width:50%}pre{margin-bottom:0}td.content-col{padding:0;margin:0;line-height:24px}td.prefix-col{padding-left:10px;padding-right:10px;line-height:24px}.td-btn-group{border-radius:4px}.td-btn-group button{background-color:rgba(23,162,184,.7);border:1px solid #17a2b8;color:#fff;cursor:pointer;float:left}.td-btn-group button:not(:last-child){border-right:none}.td-btn-group button:first-child{-webkit-border-top-left-radius:4px;-webkit-border-bottom-left-radius:4px;-moz-border-radius-topleft:4px;-moz-border-radius-bottomleft:4px;border-top-left-radius:4px;border-bottom-left-radius:4px}.td-btn-group button:last-child{-webkit-border-top-right-radius:4px;-webkit-border-bottom-right-radius:4px;-moz-border-radius-topright:4px;-moz-border-radius-bottomright:4px;border-top-right-radius:4px;border-bottom-right-radius:4px}.td-btn-group:after{content:'';clear:both;display:table}.td-btn-group button.active,.td-btn-group button:hover{background-color:#17a2b8}.td-checkbox-container{display:block;position:relative;padding-left:21px;margin-bottom:0;cursor:pointer;font-size:16px;line-height:28px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.td-checkbox-container input{position:absolute;opacity:0;cursor:pointer;height:0;width:0}.checkmark{position:absolute;top:7px;left:0;height:16px;width:16px;background-color:#eee}.td-checkbox-container:hover input~.checkmark{background-color:#ccc}.td-checkbox-container input:checked~.checkmark{background-color:#17a2b8}.checkmark:after{content:\"\";position:absolute;display:none}.td-checkbox-container input:checked~.checkmark:after{display:block}.td-checkbox-container .checkmark:after{left:5px;top:3px;width:5px;height:10px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg)}.insert-row>.highlight{background-color:#acf2bd!important}.delete-row>.highlight{background-color:#fdb8c0!important}"]
++            }]
++    }], function () { return [{ type: ɵngcc1.ScrollDispatcher }, { type: NgxTextDiffService }, { type: ɵngcc0.ChangeDetectorRef }]; }, { format: [{
++            type: Input
++        }], left: [{
++            type: Input
++        }], right: [{
++            type: Input
++        }], loading: [{
++            type: Input
++        }], showToolbar: [{
++            type: Input
++        }], showBtnToolbar: [{
++            type: Input
++        }], synchronizeScrolling: [{
++            type: Input
++        }], compareResults: [{
++            type: Output
++        }], hideMatchingLines: [{
++            type: Input
++        }], containers: [{
++            type: ViewChildren,
++            args: [ContainerDirective]
++        }], diffContent: [{
++            type: Input
++        }], outerContainerClass: [{
++            type: Input
++        }], outerContainerStyle: [{
++            type: Input
++        }], toolbarClass: [{
++            type: Input
++        }], toolbarStyle: [{
++            type: Input
++        }], compareRowsClass: [{
++            type: Input
++        }], compareRowsStyle: [{
++            type: Input
++        }] }); })();
++(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵngcc0.ɵsetClassMetadata(LoaderSpinnerComponent, [{
++        type: Component,
++        args: [{
++                selector: 'td-loader-spinner',
++                template: "<div class=\"td-loading-roller\" *ngIf=\"active\">\r\n  <div></div>\r\n  <div></div>\r\n  <div></div>\r\n  <div></div>\r\n  <div></div>\r\n  <div></div>\r\n  <div></div>\r\n  <div></div>\r\n</div>\r\n",
++                styles: [".td-loading-roller{display:inline-block;position:relative;width:64px;height:64px}.td-loading-roller div{-webkit-animation:1.2s cubic-bezier(.5,0,.5,1) infinite lds-roller;animation:1.2s cubic-bezier(.5,0,.5,1) infinite lds-roller;transform-origin:32px 32px}.td-loading-roller div:after{content:\" \";display:block;position:absolute;width:6px;height:6px;border-radius:50%;background:#000;margin:-3px 0 0 -3px}.td-loading-roller div:nth-child(1){-webkit-animation-delay:-36ms;animation-delay:-36ms}.td-loading-roller div:nth-child(1):after{top:50px;left:50px}.td-loading-roller div:nth-child(2){-webkit-animation-delay:-72ms;animation-delay:-72ms}.td-loading-roller div:nth-child(2):after{top:54px;left:45px}.td-loading-roller div:nth-child(3){-webkit-animation-delay:-108ms;animation-delay:-108ms}.td-loading-roller div:nth-child(3):after{top:57px;left:39px}.td-loading-roller div:nth-child(4){-webkit-animation-delay:-144ms;animation-delay:-144ms}.td-loading-roller div:nth-child(4):after{top:58px;left:32px}.td-loading-roller div:nth-child(5){-webkit-animation-delay:-.18s;animation-delay:-.18s}.td-loading-roller div:nth-child(5):after{top:57px;left:25px}.td-loading-roller div:nth-child(6){-webkit-animation-delay:-216ms;animation-delay:-216ms}.td-loading-roller div:nth-child(6):after{top:54px;left:19px}.td-loading-roller div:nth-child(7){-webkit-animation-delay:-252ms;animation-delay:-252ms}.td-loading-roller div:nth-child(7):after{top:50px;left:14px}.td-loading-roller div:nth-child(8){-webkit-animation-delay:-288ms;animation-delay:-288ms}.td-loading-roller div:nth-child(8):after{top:45px;left:10px}@-webkit-keyframes lds-roller{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}@keyframes lds-roller{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}"]
++            }]
++    }], function () { return []; }, { active: [{
++            type: Input
++        }] }); })();
++(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵngcc0.ɵsetClassMetadata(FormatLinePipe, [{
++        type: Pipe,
++        args: [{
++                name: 'formatLine'
++            }]
++    }], null, null); })();
++(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵngcc0.ɵsetClassMetadata(NgxTextDiffModule, [{
++        type: NgModule,
++        args: [{
++                imports: [CommonModule, FormsModule, ScrollingModule],
++                declarations: [NgxTextDiffComponent, LoaderSpinnerComponent, FormatLinePipe, ContainerDirective],
++                exports: [NgxTextDiffComponent]
++            }]
++    }], null, null); })();
++(function () { (typeof ngJitMode === "undefined" || ngJitMode) && ɵngcc0.ɵɵsetNgModuleScope(NgxTextDiffModule, { declarations: function () { return [NgxTextDiffComponent, LoaderSpinnerComponent, FormatLinePipe, ContainerDirective]; }, imports: function () { return [CommonModule, FormsModule, ScrollingModule]; }, exports: function () { return [NgxTextDiffComponent]; } }); })();
++
++/*
++ * Public API Surface of ngx-text-diff
++ */
++
++/**
++ * Generated bundle index. Do not edit.
++ */
++
++export { NgxTextDiffComponent, NgxTextDiffModule, NgxTextDiffService, ContainerDirective as ɵa, LoaderSpinnerComponent as ɵb, FormatLinePipe as ɵc };
++
++//# sourceMappingURL=ngx-text-diff.js.map
+\ No newline at end of file
+diff --git a/node_modules/ngx-text-diff/__ivy_ngcc__/fesm2015/ngx-text-diff.js.map b/node_modules/ngx-text-diff/__ivy_ngcc__/fesm2015/ngx-text-diff.js.map
+new file mode 100644
+index 0000000..c1fa22b
+--- /dev/null
++++ b/node_modules/ngx-text-diff/__ivy_ngcc__/fesm2015/ngx-text-diff.js.map
+@@ -0,0 +1 @@
++{"version":3,"file":"ngx-text-diff.js","sources":["ngx-text-diff/lib/ngx-text-diff.utils.ts","ngx-text-diff/lib/ngx-text-diff.service.ts","ngx-text-diff/lib/ngx-text-diff-container.directive.ts","ngx-text-diff/lib/ngx-text-diff.component.ts","ngx-text-diff/lib/loader-spinner/loader-spinner.component.ts","ngx-text-diff/lib/format-line.pipe.ts","ngx-text-diff/lib/ngx-text-diff.module.ts","ngx-text-diff/public_api.ts","ngx-text-diff/ngx-text-diff.ts"],"names":[],"mappings":"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","sourcesContent":["export const isNil = val => val === undefined || val === null;\r\nexport const isEmpty = val => val == null || !(Object.keys(val) || val).length || (Object.keys(val) || val).length === 0;\r\n","import { Injectable } from '@angular/core';\r\nimport { Diff, DIFF_DELETE, DIFF_EQUAL, DIFF_INSERT, diff_match_patch } from 'diff-match-patch';\r\nimport { DiffLineResult, DiffPart, DiffTableRowResult } from './ngx-text-diff.model';\r\nimport { isEmpty, isNil } from './ngx-text-diff.utils';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class NgxTextDiffService {\r\n  diffParser: diff_match_patch;\r\n\r\n  constructor() {\r\n    this.initParser();\r\n  }\r\n\r\n  private initParser() {\r\n    this.diffParser = new diff_match_patch();\r\n  }\r\n\r\n  getDiffsByLines(left: string, right: string): Promise<DiffTableRowResult[]> {\r\n    return new Promise<DiffTableRowResult[]>((resolve, reject) => {\r\n      const a = this.diffParser.diff_linesToChars_(left, right);\r\n      const lineText1 = a.chars1;\r\n      const lineText2 = a.chars2;\r\n      const linesArray = a.lineArray;\r\n      const diffs: Diff[] = this.diffParser.diff_main(lineText1, lineText2, true);\r\n      this.diffParser.diff_charsToLines_(diffs, linesArray);\r\n      const rows: DiffTableRowResult[] = this.formatOutput(diffs);\r\n      if (!rows) {\r\n        reject('Error');\r\n      }\r\n\r\n      resolve(rows);\r\n    });\r\n  }\r\n\r\n  private formatOutput(diffs: Diff[]): DiffTableRowResult[] {\r\n    let lineLeft = 1;\r\n    let lineRight = 1;\r\n    return diffs.reduce((rows: DiffTableRowResult[], diff: Diff) => {\r\n      if (!rows) {\r\n        rows = [];\r\n      }\r\n      const diffType: number = diff[0];\r\n      const diffValue: string = diff[1];\r\n      let leftDiffRow: DiffTableRowResult = null;\r\n      let rightDiffRow: DiffTableRowResult = null;\r\n      let leftContent: DiffLineResult = null;\r\n      let rightContent: DiffLineResult = null;\r\n      let rowTemp: DiffTableRowResult = null;\r\n      switch (diffType) {\r\n        case DIFF_EQUAL: // 0\r\n          diffValue\r\n            .split('\\n')\r\n            .filter((value, index, array) => {\r\n              if (index === array.length - 1) {\r\n                return !isEmpty(value);\r\n              }\r\n              return true;\r\n            })\r\n            .forEach(line => {\r\n              leftContent = {\r\n                lineNumber: lineLeft,\r\n                lineContent: line,\r\n                lineDiffs: [],\r\n                prefix: ''\r\n              };\r\n              rightContent = {\r\n                lineNumber: lineRight,\r\n                lineContent: line,\r\n                lineDiffs: [],\r\n                prefix: ''\r\n              };\r\n              rowTemp = {\r\n                leftContent,\r\n                rightContent,\r\n                belongTo: 'both',\r\n                hasDiffs: false,\r\n                numDiffs: 0,\r\n              };\r\n              rows.push(rowTemp);\r\n              lineRight = lineRight + 1;\r\n              lineLeft = lineLeft + 1;\r\n            });\r\n          break;\r\n        case DIFF_DELETE: // -1\r\n          diffValue\r\n            .split('\\n')\r\n            .filter((value, index, array) => {\r\n              if (index === array.length - 1) {\r\n                return !isEmpty(value);\r\n              }\r\n              return true;\r\n            })\r\n            .forEach(line => {\r\n              rightDiffRow = rows.find(\r\n                row => !row.leftContent && row.rightContent && row.rightContent.lineNumber === lineLeft && row.rightContent.prefix !== ''\r\n              );\r\n              leftContent = {\r\n                lineNumber: lineLeft,\r\n                lineContent: line,\r\n                lineDiffs: [{ content: line, isDiff: true }],\r\n                prefix: '-'\r\n              };\r\n              if (rightDiffRow) {\r\n                rightDiffRow.leftContent = leftContent;\r\n                rightDiffRow.leftContent.lineDiffs = this.getDiffParts(\r\n                  rightDiffRow.leftContent.lineContent,\r\n                  rightDiffRow.rightContent.lineContent\r\n                );\r\n                rightDiffRow.rightContent.lineDiffs = this.getDiffParts(\r\n                  rightDiffRow.rightContent.lineContent,\r\n                  rightDiffRow.leftContent.lineContent\r\n                );\r\n                rightDiffRow.belongTo = 'both';\r\n                rightDiffRow.numDiffs = this.countDiffs(rightDiffRow);\r\n              } else {\r\n                rows.push({\r\n                  leftContent,\r\n                  rightContent: null,\r\n                  hasDiffs: true,\r\n                  belongTo: 'left',\r\n                  numDiffs: 1,\r\n                });\r\n              }\r\n              lineLeft = lineLeft + 1;\r\n            });\r\n          break;\r\n        case DIFF_INSERT: // 1\r\n          diffValue\r\n            .split('\\n')\r\n            .filter((value, index, array) => {\r\n              if (index === array.length - 1) {\r\n                return !isEmpty(value);\r\n              }\r\n              return true;\r\n            })\r\n            .forEach(line => {\r\n              leftDiffRow = rows.find(\r\n                row => row.leftContent && !row.rightContent && row.leftContent.lineNumber === lineRight && row.leftContent.prefix !== ''\r\n              );\r\n              rightContent = {\r\n                lineNumber: lineRight,\r\n                lineContent: line,\r\n                lineDiffs: [{ content: line, isDiff: true }],\r\n                prefix: '+'\r\n              };\r\n              if (leftDiffRow) {\r\n                leftDiffRow.rightContent = rightContent;\r\n                leftDiffRow.leftContent.lineDiffs = this.getDiffParts(\r\n                  leftDiffRow.leftContent.lineContent,\r\n                  leftDiffRow.rightContent.lineContent\r\n                );\r\n                leftDiffRow.rightContent.lineDiffs = this.getDiffParts(\r\n                  leftDiffRow.rightContent.lineContent,\r\n                  leftDiffRow.leftContent.lineContent\r\n                );\r\n                leftDiffRow.belongTo = 'both';\r\n                leftDiffRow.numDiffs = this.countDiffs(leftDiffRow);\r\n              } else {\r\n                rows.push({\r\n                  leftContent: null,\r\n                  rightContent,\r\n                  hasDiffs: true,\r\n                  belongTo: 'right',\r\n                  numDiffs: 1,\r\n                });\r\n              }\r\n              lineRight = lineRight + 1;\r\n            });\r\n          break;\r\n      }\r\n      return rows;\r\n    }, []);\r\n  }\r\n\r\n  private countDiffs(result: DiffTableRowResult): number {\r\n    let diffCount = 0;\r\n    if (result.leftContent) {\r\n      diffCount += result.leftContent.lineDiffs.filter(diff => diff.isDiff).length;\r\n    }\r\n    if (result.leftContent) {\r\n      diffCount += result.rightContent.lineDiffs.filter(diff => diff.isDiff).length;\r\n    }\r\n    return diffCount;\r\n  }\r\n\r\n  private getDiffParts(value: string, compareValue: string): DiffPart[] {\r\n    const diffParts: DiffPart[] = [];\r\n    let i = 0;\r\n    let j = 0;\r\n    let shared = '';\r\n    let diff = '';\r\n\r\n    while (i < value.length) {\r\n      if (value[i] === compareValue[j] && j < compareValue.length) {\r\n        if (diff !== '') {\r\n          diffParts.push({ content: diff, isDiff: true });\r\n          diff = '';\r\n        }\r\n        shared += value[i];\r\n      } else {\r\n        if (shared !== '') {\r\n          diffParts.push({ content: shared, isDiff: false });\r\n          shared = '';\r\n        }\r\n        diff += value[i];\r\n      }\r\n      i++;\r\n      j++;\r\n    }\r\n\r\n    if (diff !== '') {\r\n      diffParts.push({ content: diff, isDiff: true });\r\n    } else if (shared !== '') {\r\n      diffParts.push({ content: shared, isDiff: false });\r\n    }\r\n\r\n    return diffParts;\r\n  }\r\n}\r\n","import { Directive, Input, ElementRef } from '@angular/core';\r\n\r\n@Directive({\r\n  selector: '[tdContainer]',\r\n})\r\nexport class ContainerDirective {\r\n  @Input() id: string;\r\n\r\n  element: HTMLTableHeaderCellElement;\r\n\r\n  constructor(private _el: ElementRef) {\r\n    this.element = _el.nativeElement;\r\n  }\r\n}\r\n","import {\r\n  ChangeDetectorRef,\r\n  Component,\r\n  Input,\r\n  OnDestroy,\r\n  OnInit,\r\n  Output,\r\n  EventEmitter,\r\n  ViewChildren,\r\n  QueryList,\r\n  AfterViewInit\r\n} from '@angular/core';\r\nimport { DiffContent, DiffPart, DiffTableFormat, DiffTableFormatOption, DiffTableRowResult, DiffResults } from './ngx-text-diff.model';\r\nimport { NgxTextDiffService } from './ngx-text-diff.service';\r\nimport { Observable, Subscription } from 'rxjs';\r\nimport { ContainerDirective } from './ngx-text-diff-container.directive';\r\nimport { ScrollDispatcher, CdkScrollable } from '@angular/cdk/scrolling';\r\n\r\n@Component({\r\n  selector: 'td-ngx-text-diff',\r\n  templateUrl: './ngx-text-diff.component.html',\r\n  styleUrls: ['./ngx-text-diff.component.css'],\r\n})\r\nexport class NgxTextDiffComponent implements OnInit, AfterViewInit, OnDestroy {\r\n  private _hideMatchingLines = false;\r\n  @ViewChildren(ContainerDirective) containers: QueryList<ContainerDirective>;\r\n  @Input() format: DiffTableFormat = 'SideBySide';\r\n  @Input() left = '';\r\n  @Input() right = '';\r\n  @Input() diffContent: Observable<DiffContent>;\r\n  @Input() loading = false;\r\n  @Input() showToolbar = true;\r\n  @Input() showBtnToolbar = true;\r\n  @Input()\r\n  get hideMatchingLines() {\r\n    return this._hideMatchingLines;\r\n  }\r\n\r\n  set hideMatchingLines(hide: boolean) {\r\n    this.hideMatchingLinesChanged(hide);\r\n  }\r\n  @Input() outerContainerClass: string;\r\n  @Input() outerContainerStyle: any;\r\n  @Input() toolbarClass: string;\r\n  @Input() toolbarStyle: any;\r\n  @Input() compareRowsClass: string;\r\n  @Input() compareRowsStyle: any;\r\n  @Input() synchronizeScrolling = true;\r\n  @Output() compareResults = new EventEmitter<DiffResults>();\r\n  subscriptions: Subscription[] = [];\r\n  tableRows: DiffTableRowResult[] = [];\r\n  filteredTableRows: DiffTableRowResult[] = [];\r\n  tableRowsLineByLine: DiffTableRowResult[] = [];\r\n  filteredTableRowsLineByLine: DiffTableRowResult[] = [];\r\n  diffsCount = 0;\r\n\r\n  formatOptions: DiffTableFormatOption[] = [\r\n    {\r\n      id: 'side-by-side',\r\n      name: 'side-by-side',\r\n      label: 'Side by Side',\r\n      value: 'SideBySide',\r\n      icon: 'la-code',\r\n    },\r\n    {\r\n      id: 'line-by-line',\r\n      name: 'line-by-line',\r\n      label: 'Line by Line',\r\n      value: 'LineByLine',\r\n      icon: 'la-file-text',\r\n    },\r\n  ];\r\n\r\n  constructor(private scrollService: ScrollDispatcher, private diff: NgxTextDiffService, private cd: ChangeDetectorRef) {}\r\n\r\n  ngOnInit() {\r\n    this.loading = true;\r\n    if (this.diffContent) {\r\n      this.subscriptions.push(\r\n        this.diffContent.subscribe(content => {\r\n          this.loading = true;\r\n          this.left = content.leftContent;\r\n          this.right = content.rightContent;\r\n          this.renderDiffs()\r\n            .then(() => {\r\n              this.cd.detectChanges();\r\n              this.loading = false;\r\n            })\r\n            .catch(() => (this.loading = false));\r\n        })\r\n      );\r\n    }\r\n    this.renderDiffs()\r\n      .then(() => (this.loading = false))\r\n      .catch(e => (this.loading = false));\r\n  }\r\n\r\n  ngAfterViewInit() {\r\n    this.initScrollListener();\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    if (this.subscriptions) {\r\n      this.subscriptions.forEach(subscription => subscription.unsubscribe());\r\n    }\r\n  }\r\n\r\n  hideMatchingLinesChanged(value: boolean) {\r\n    this._hideMatchingLines = value;\r\n    if (this.hideMatchingLines) {\r\n      this.filteredTableRows = this.tableRows.filter(\r\n        row => (row.leftContent && row.leftContent.prefix === '-') || (row.rightContent && row.rightContent.prefix === '+')\r\n      );\r\n      this.filteredTableRowsLineByLine = this.tableRowsLineByLine.filter(\r\n        row => (row.leftContent && row.leftContent.prefix === '-') || (row.rightContent && row.rightContent.prefix === '+')\r\n      );\r\n    } else {\r\n      this.filteredTableRows = this.tableRows;\r\n      this.filteredTableRowsLineByLine = this.tableRowsLineByLine;\r\n    }\r\n  }\r\n\r\n  setDiffTableFormat(format: DiffTableFormat) {\r\n    this.format = format;\r\n  }\r\n\r\n  async renderDiffs() {\r\n    try {\r\n      this.diffsCount = 0;\r\n      this.tableRows = await this.diff.getDiffsByLines(this.left, this.right);\r\n      this.tableRowsLineByLine = this.tableRows.reduce((tableLineByLine: DiffTableRowResult[], row: DiffTableRowResult) => {\r\n        if (!tableLineByLine) {\r\n          tableLineByLine = [];\r\n        }\r\n        if (row.hasDiffs) {\r\n          if (row.leftContent) {\r\n            tableLineByLine.push({\r\n              leftContent: row.leftContent,\r\n              rightContent: null,\r\n              belongTo: row.belongTo,\r\n              hasDiffs: true,\r\n              numDiffs: row.numDiffs,\r\n            });\r\n          }\r\n          if (row.rightContent) {\r\n            tableLineByLine.push({\r\n              leftContent: null,\r\n              rightContent: row.rightContent,\r\n              belongTo: row.belongTo,\r\n              hasDiffs: true,\r\n              numDiffs: row.numDiffs,\r\n            });\r\n          }\r\n        } else {\r\n          tableLineByLine.push(row);\r\n        }\r\n\r\n        return tableLineByLine;\r\n      }, []);\r\n      this.diffsCount = this.tableRows.filter(row => row.hasDiffs).length;\r\n      this.filteredTableRows = this.tableRows;\r\n      this.filteredTableRowsLineByLine = this.tableRowsLineByLine;\r\n      this.emitCompareResultsEvent();\r\n    } catch (e) {\r\n      throw e;\r\n    }\r\n  }\r\n\r\n  emitCompareResultsEvent() {\r\n    const diffResults: DiffResults = {\r\n      hasDiff: this.diffsCount > 0,\r\n      diffsCount: this.diffsCount,\r\n      rowsWithDiff: this.tableRows\r\n        .filter(row => row.hasDiffs)\r\n        .map(row => ({\r\n          leftLineNumber: row.leftContent ? row.leftContent.lineNumber : null,\r\n          rightLineNumber: row.rightContent ? row.rightContent.lineNumber : null,\r\n          numDiffs: row.numDiffs,\r\n        })),\r\n    };\r\n\r\n    this.compareResults.next(diffResults);\r\n  }\r\n\r\n  trackTableRows(index, row: DiffTableRowResult) {\r\n    return row && row.leftContent ? row.leftContent.lineContent : row && row.rightContent ? row.rightContent.lineContent : undefined;\r\n  }\r\n\r\n  trackDiffs(index, diff: DiffPart) {\r\n    return diff && diff.content ? diff.content : undefined;\r\n  }\r\n\r\n  private initScrollListener() {\r\n    this.subscriptions.push(this.scrollService.scrolled().subscribe((scrollableEv: CdkScrollable) => {\r\n      if (scrollableEv && this.synchronizeScrolling) {\r\n        const scrollableId = scrollableEv.getElementRef().nativeElement.id;\r\n        const nonScrolledContainer: ContainerDirective = this.containers.find(container => container.id !== scrollableId);\r\n        if (nonScrolledContainer) {\r\n          nonScrolledContainer.element.scrollTo({\r\n            top: scrollableEv.measureScrollOffset('top'),\r\n            left: scrollableEv.measureScrollOffset('left'),\r\n          });\r\n        }\r\n      }\r\n    }));\r\n  }\r\n}\r\n","import { Component, Input, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'td-loader-spinner',\r\n  templateUrl: './loader-spinner.component.html',\r\n  styleUrls: ['./loader-spinner.component.css']\r\n})\r\nexport class LoaderSpinnerComponent implements OnInit {\r\n  @Input() active = false;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit() {}\r\n}\r\n","import { Pipe, PipeTransform } from '@angular/core';\r\n\r\n@Pipe({\r\n  name: 'formatLine'\r\n})\r\nexport class FormatLinePipe implements PipeTransform {\r\n  transform(line: string, diffs?: string[]): string {\r\n    if (!line) {\r\n      return ' ';\r\n    }\r\n    if (!!diffs && diffs.length > 0) {\r\n      /*diffs.forEach(diff => {\r\n        line = line.replace(diff, `<span class=\"highli\">${diff}</span>`);\r\n      });*/\r\n    }\r\n    return line\r\n      .replace(/&/g, '&amp;')\r\n      .replace(/</g, '&lt;')\r\n      .replace(/>/g, '&gt;')\r\n      .replace(/\"/g, '&quot;')\r\n      .replace(/ /g, '&nbsp;');\r\n  }\r\n}\r\n","import { NgModule } from '@angular/core';\r\nimport { NgxTextDiffComponent } from './ngx-text-diff.component';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { LoaderSpinnerComponent } from './loader-spinner/loader-spinner.component';\r\nimport { FormatLinePipe } from './format-line.pipe';\r\nimport { ContainerDirective } from './ngx-text-diff-container.directive';\r\nimport { ScrollingModule } from '@angular/cdk/scrolling';\r\n\r\n@NgModule({\r\n  imports: [CommonModule, FormsModule, ScrollingModule],\r\n  declarations: [NgxTextDiffComponent, LoaderSpinnerComponent, FormatLinePipe, ContainerDirective],\r\n  exports: [NgxTextDiffComponent],\r\n})\r\nexport class NgxTextDiffModule {}\r\n","/*\r\n * Public API Surface of ngx-text-diff\r\n */\r\n\r\nexport * from './lib/ngx-text-diff.service';\r\nexport * from './lib/ngx-text-diff.component';\r\nexport * from './lib/ngx-text-diff.module';\r\n","/**\n * Generated bundle index. Do not edit.\n */\n\nexport * from './public_api';\n\nexport {FormatLinePipe as ɵc} from './lib/format-line.pipe';\nexport {LoaderSpinnerComponent as ɵb} from './lib/loader-spinner/loader-spinner.component';\nexport {ContainerDirective as ɵa} from './lib/ngx-text-diff-container.directive';"]}
+\ No newline at end of file
+diff --git a/node_modules/ngx-text-diff/lib/format-line.pipe.d.ts b/node_modules/ngx-text-diff/lib/format-line.pipe.d.ts
+index 7dd82e1..5a2dc82 100644
+--- a/node_modules/ngx-text-diff/lib/format-line.pipe.d.ts
++++ b/node_modules/ngx-text-diff/lib/format-line.pipe.d.ts
+@@ -1,4 +1,9 @@
+ import { PipeTransform } from '@angular/core';
++import * as ɵngcc0 from '@angular/core';
+ export declare class FormatLinePipe implements PipeTransform {
+     transform(line: string, diffs?: string[]): string;
++    static ɵfac: ɵngcc0.ɵɵFactoryDeclaration<FormatLinePipe, never>;
++    static ɵpipe: ɵngcc0.ɵɵPipeDeclaration<FormatLinePipe, "formatLine">;
+ }
++
++//# sourceMappingURL=format-line.pipe.d.ts.map
+\ No newline at end of file
+diff --git a/node_modules/ngx-text-diff/lib/format-line.pipe.d.ts.__ivy_ngcc_bak b/node_modules/ngx-text-diff/lib/format-line.pipe.d.ts.__ivy_ngcc_bak
+new file mode 100644
+index 0000000..7dd82e1
+--- /dev/null
++++ b/node_modules/ngx-text-diff/lib/format-line.pipe.d.ts.__ivy_ngcc_bak
+@@ -0,0 +1,4 @@
++import { PipeTransform } from '@angular/core';
++export declare class FormatLinePipe implements PipeTransform {
++    transform(line: string, diffs?: string[]): string;
++}
+diff --git a/node_modules/ngx-text-diff/lib/format-line.pipe.d.ts.map b/node_modules/ngx-text-diff/lib/format-line.pipe.d.ts.map
+new file mode 100644
+index 0000000..7c783d5
+--- /dev/null
++++ b/node_modules/ngx-text-diff/lib/format-line.pipe.d.ts.map
+@@ -0,0 +1 @@
++{"version":3,"file":"format-line.pipe.d.ts","sources":["format-line.pipe.d.ts"],"names":[],"mappings":"AAAA;;AACA;AACA;;;AACA","sourcesContent":["import { PipeTransform } from '@angular/core';\r\nexport declare class FormatLinePipe implements PipeTransform {\r\n    transform(line: string, diffs?: string[]): string;\r\n}\r\n"]}
+\ No newline at end of file
+diff --git a/node_modules/ngx-text-diff/lib/loader-spinner/loader-spinner.component.d.ts b/node_modules/ngx-text-diff/lib/loader-spinner/loader-spinner.component.d.ts
+index ac493c9..9cf94bd 100644
+--- a/node_modules/ngx-text-diff/lib/loader-spinner/loader-spinner.component.d.ts
++++ b/node_modules/ngx-text-diff/lib/loader-spinner/loader-spinner.component.d.ts
+@@ -1,6 +1,11 @@
+ import { OnInit } from '@angular/core';
++import * as ɵngcc0 from '@angular/core';
+ export declare class LoaderSpinnerComponent implements OnInit {
+     active: boolean;
+     constructor();
+     ngOnInit(): void;
++    static ɵfac: ɵngcc0.ɵɵFactoryDeclaration<LoaderSpinnerComponent, never>;
++    static ɵcmp: ɵngcc0.ɵɵComponentDeclaration<LoaderSpinnerComponent, "td-loader-spinner", never, { "active": "active"; }, {}, never, never>;
+ }
++
++//# sourceMappingURL=loader-spinner.component.d.ts.map
+\ No newline at end of file
+diff --git a/node_modules/ngx-text-diff/lib/loader-spinner/loader-spinner.component.d.ts.__ivy_ngcc_bak b/node_modules/ngx-text-diff/lib/loader-spinner/loader-spinner.component.d.ts.__ivy_ngcc_bak
+new file mode 100644
+index 0000000..ac493c9
+--- /dev/null
++++ b/node_modules/ngx-text-diff/lib/loader-spinner/loader-spinner.component.d.ts.__ivy_ngcc_bak
+@@ -0,0 +1,6 @@
++import { OnInit } from '@angular/core';
++export declare class LoaderSpinnerComponent implements OnInit {
++    active: boolean;
++    constructor();
++    ngOnInit(): void;
++}
+diff --git a/node_modules/ngx-text-diff/lib/loader-spinner/loader-spinner.component.d.ts.map b/node_modules/ngx-text-diff/lib/loader-spinner/loader-spinner.component.d.ts.map
+new file mode 100644
+index 0000000..1e130d9
+--- /dev/null
++++ b/node_modules/ngx-text-diff/lib/loader-spinner/loader-spinner.component.d.ts.map
+@@ -0,0 +1 @@
++{"version":3,"file":"loader-spinner.component.d.ts","sources":["loader-spinner.component.d.ts"],"names":[],"mappings":"AAAA;;AACA;AACA;AACA;AACA;;;AACA","sourcesContent":["import { OnInit } from '@angular/core';\r\nexport declare class LoaderSpinnerComponent implements OnInit {\r\n    active: boolean;\r\n    constructor();\r\n    ngOnInit(): void;\r\n}\r\n"]}
+\ No newline at end of file
+diff --git a/node_modules/ngx-text-diff/lib/ngx-text-diff-container.directive.d.ts b/node_modules/ngx-text-diff/lib/ngx-text-diff-container.directive.d.ts
+index 7803fc1..c59b710 100644
+--- a/node_modules/ngx-text-diff/lib/ngx-text-diff-container.directive.d.ts
++++ b/node_modules/ngx-text-diff/lib/ngx-text-diff-container.directive.d.ts
+@@ -1,7 +1,12 @@
+ import { ElementRef } from '@angular/core';
++import * as ɵngcc0 from '@angular/core';
+ export declare class ContainerDirective {
+     private _el;
+     id: string;
+     element: HTMLTableHeaderCellElement;
+     constructor(_el: ElementRef);
++    static ɵfac: ɵngcc0.ɵɵFactoryDeclaration<ContainerDirective, never>;
++    static ɵdir: ɵngcc0.ɵɵDirectiveDeclaration<ContainerDirective, "[tdContainer]", never, { "id": "id"; }, {}, never>;
+ }
++
++//# sourceMappingURL=ngx-text-diff-container.directive.d.ts.map
+\ No newline at end of file
+diff --git a/node_modules/ngx-text-diff/lib/ngx-text-diff-container.directive.d.ts.__ivy_ngcc_bak b/node_modules/ngx-text-diff/lib/ngx-text-diff-container.directive.d.ts.__ivy_ngcc_bak
+new file mode 100644
+index 0000000..7803fc1
+--- /dev/null
++++ b/node_modules/ngx-text-diff/lib/ngx-text-diff-container.directive.d.ts.__ivy_ngcc_bak
+@@ -0,0 +1,7 @@
++import { ElementRef } from '@angular/core';
++export declare class ContainerDirective {
++    private _el;
++    id: string;
++    element: HTMLTableHeaderCellElement;
++    constructor(_el: ElementRef);
++}
+diff --git a/node_modules/ngx-text-diff/lib/ngx-text-diff-container.directive.d.ts.map b/node_modules/ngx-text-diff/lib/ngx-text-diff-container.directive.d.ts.map
+new file mode 100644
+index 0000000..b5f8fc5
+--- /dev/null
++++ b/node_modules/ngx-text-diff/lib/ngx-text-diff-container.directive.d.ts.map
+@@ -0,0 +1 @@
++{"version":3,"file":"ngx-text-diff-container.directive.d.ts","sources":["ngx-text-diff-container.directive.d.ts"],"names":[],"mappings":"AAAA;;AACA;AACA;AACA;AACA;AACA;;;AACA","sourcesContent":["import { ElementRef } from '@angular/core';\r\nexport declare class ContainerDirective {\r\n    private _el;\r\n    id: string;\r\n    element: HTMLTableHeaderCellElement;\r\n    constructor(_el: ElementRef);\r\n}\r\n"]}
+\ No newline at end of file
+diff --git a/node_modules/ngx-text-diff/lib/ngx-text-diff.component.d.ts b/node_modules/ngx-text-diff/lib/ngx-text-diff.component.d.ts
+index f7e2673..a5b5a4c 100644
+--- a/node_modules/ngx-text-diff/lib/ngx-text-diff.component.d.ts
++++ b/node_modules/ngx-text-diff/lib/ngx-text-diff.component.d.ts
+@@ -4,6 +4,7 @@ import { NgxTextDiffService } from './ngx-text-diff.service';
+ import { Observable, Subscription } from 'rxjs';
+ import { ContainerDirective } from './ngx-text-diff-container.directive';
+ import { ScrollDispatcher } from '@angular/cdk/scrolling';
++import * as ɵngcc0 from '@angular/core';
+ export declare class NgxTextDiffComponent implements OnInit, AfterViewInit, OnDestroy {
+     private scrollService;
+     private diff;
+@@ -45,4 +46,8 @@ export declare class NgxTextDiffComponent implements OnInit, AfterViewInit, OnDe
+     trackTableRows(index: any, row: DiffTableRowResult): string;
+     trackDiffs(index: any, diff: DiffPart): string;
+     private initScrollListener;
++    static ɵfac: ɵngcc0.ɵɵFactoryDeclaration<NgxTextDiffComponent, never>;
++    static ɵcmp: ɵngcc0.ɵɵComponentDeclaration<NgxTextDiffComponent, "td-ngx-text-diff", never, { "format": "format"; "left": "left"; "right": "right"; "loading": "loading"; "showToolbar": "showToolbar"; "showBtnToolbar": "showBtnToolbar"; "synchronizeScrolling": "synchronizeScrolling"; "hideMatchingLines": "hideMatchingLines"; "diffContent": "diffContent"; "outerContainerClass": "outerContainerClass"; "outerContainerStyle": "outerContainerStyle"; "toolbarClass": "toolbarClass"; "toolbarStyle": "toolbarStyle"; "compareRowsClass": "compareRowsClass"; "compareRowsStyle": "compareRowsStyle"; }, { "compareResults": "compareResults"; }, never, never>;
+ }
++
++//# sourceMappingURL=ngx-text-diff.component.d.ts.map
+\ No newline at end of file
+diff --git a/node_modules/ngx-text-diff/lib/ngx-text-diff.component.d.ts.__ivy_ngcc_bak b/node_modules/ngx-text-diff/lib/ngx-text-diff.component.d.ts.__ivy_ngcc_bak
+new file mode 100644
+index 0000000..f7e2673
+--- /dev/null
++++ b/node_modules/ngx-text-diff/lib/ngx-text-diff.component.d.ts.__ivy_ngcc_bak
+@@ -0,0 +1,48 @@
++import { ChangeDetectorRef, OnDestroy, OnInit, EventEmitter, QueryList, AfterViewInit } from '@angular/core';
++import { DiffContent, DiffPart, DiffTableFormat, DiffTableFormatOption, DiffTableRowResult, DiffResults } from './ngx-text-diff.model';
++import { NgxTextDiffService } from './ngx-text-diff.service';
++import { Observable, Subscription } from 'rxjs';
++import { ContainerDirective } from './ngx-text-diff-container.directive';
++import { ScrollDispatcher } from '@angular/cdk/scrolling';
++export declare class NgxTextDiffComponent implements OnInit, AfterViewInit, OnDestroy {
++    private scrollService;
++    private diff;
++    private cd;
++    private _hideMatchingLines;
++    containers: QueryList<ContainerDirective>;
++    format: DiffTableFormat;
++    left: string;
++    right: string;
++    diffContent: Observable<DiffContent>;
++    loading: boolean;
++    showToolbar: boolean;
++    showBtnToolbar: boolean;
++    get hideMatchingLines(): boolean;
++    set hideMatchingLines(hide: boolean);
++    outerContainerClass: string;
++    outerContainerStyle: any;
++    toolbarClass: string;
++    toolbarStyle: any;
++    compareRowsClass: string;
++    compareRowsStyle: any;
++    synchronizeScrolling: boolean;
++    compareResults: EventEmitter<DiffResults>;
++    subscriptions: Subscription[];
++    tableRows: DiffTableRowResult[];
++    filteredTableRows: DiffTableRowResult[];
++    tableRowsLineByLine: DiffTableRowResult[];
++    filteredTableRowsLineByLine: DiffTableRowResult[];
++    diffsCount: number;
++    formatOptions: DiffTableFormatOption[];
++    constructor(scrollService: ScrollDispatcher, diff: NgxTextDiffService, cd: ChangeDetectorRef);
++    ngOnInit(): void;
++    ngAfterViewInit(): void;
++    ngOnDestroy(): void;
++    hideMatchingLinesChanged(value: boolean): void;
++    setDiffTableFormat(format: DiffTableFormat): void;
++    renderDiffs(): Promise<void>;
++    emitCompareResultsEvent(): void;
++    trackTableRows(index: any, row: DiffTableRowResult): string;
++    trackDiffs(index: any, diff: DiffPart): string;
++    private initScrollListener;
++}
+diff --git a/node_modules/ngx-text-diff/lib/ngx-text-diff.component.d.ts.map b/node_modules/ngx-text-diff/lib/ngx-text-diff.component.d.ts.map
+new file mode 100644
+index 0000000..6f773bd
+--- /dev/null
++++ b/node_modules/ngx-text-diff/lib/ngx-text-diff.component.d.ts.map
+@@ -0,0 +1 @@
++{"version":3,"file":"ngx-text-diff.component.d.ts","sources":["ngx-text-diff.component.d.ts"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;;AACA","sourcesContent":["import { ChangeDetectorRef, OnDestroy, OnInit, EventEmitter, QueryList, AfterViewInit } from '@angular/core';\r\nimport { DiffContent, DiffPart, DiffTableFormat, DiffTableFormatOption, DiffTableRowResult, DiffResults } from './ngx-text-diff.model';\r\nimport { NgxTextDiffService } from './ngx-text-diff.service';\r\nimport { Observable, Subscription } from 'rxjs';\r\nimport { ContainerDirective } from './ngx-text-diff-container.directive';\r\nimport { ScrollDispatcher } from '@angular/cdk/scrolling';\r\nexport declare class NgxTextDiffComponent implements OnInit, AfterViewInit, OnDestroy {\r\n    private scrollService;\r\n    private diff;\r\n    private cd;\r\n    private _hideMatchingLines;\r\n    containers: QueryList<ContainerDirective>;\r\n    format: DiffTableFormat;\r\n    left: string;\r\n    right: string;\r\n    diffContent: Observable<DiffContent>;\r\n    loading: boolean;\r\n    showToolbar: boolean;\r\n    showBtnToolbar: boolean;\r\n    get hideMatchingLines(): boolean;\r\n    set hideMatchingLines(hide: boolean);\r\n    outerContainerClass: string;\r\n    outerContainerStyle: any;\r\n    toolbarClass: string;\r\n    toolbarStyle: any;\r\n    compareRowsClass: string;\r\n    compareRowsStyle: any;\r\n    synchronizeScrolling: boolean;\r\n    compareResults: EventEmitter<DiffResults>;\r\n    subscriptions: Subscription[];\r\n    tableRows: DiffTableRowResult[];\r\n    filteredTableRows: DiffTableRowResult[];\r\n    tableRowsLineByLine: DiffTableRowResult[];\r\n    filteredTableRowsLineByLine: DiffTableRowResult[];\r\n    diffsCount: number;\r\n    formatOptions: DiffTableFormatOption[];\r\n    constructor(scrollService: ScrollDispatcher, diff: NgxTextDiffService, cd: ChangeDetectorRef);\r\n    ngOnInit(): void;\r\n    ngAfterViewInit(): void;\r\n    ngOnDestroy(): void;\r\n    hideMatchingLinesChanged(value: boolean): void;\r\n    setDiffTableFormat(format: DiffTableFormat): void;\r\n    renderDiffs(): Promise<void>;\r\n    emitCompareResultsEvent(): void;\r\n    trackTableRows(index: any, row: DiffTableRowResult): string;\r\n    trackDiffs(index: any, diff: DiffPart): string;\r\n    private initScrollListener;\r\n}\r\n"]}
+\ No newline at end of file
+diff --git a/node_modules/ngx-text-diff/lib/ngx-text-diff.module.d.ts b/node_modules/ngx-text-diff/lib/ngx-text-diff.module.d.ts
+index 8d9023b..4f2c6ab 100644
+--- a/node_modules/ngx-text-diff/lib/ngx-text-diff.module.d.ts
++++ b/node_modules/ngx-text-diff/lib/ngx-text-diff.module.d.ts
+@@ -1,2 +1,15 @@
++import * as ɵngcc0 from '@angular/core';
++import * as ɵngcc1 from './ngx-text-diff.component';
++import * as ɵngcc2 from './loader-spinner/loader-spinner.component';
++import * as ɵngcc3 from './format-line.pipe';
++import * as ɵngcc4 from './ngx-text-diff-container.directive';
++import * as ɵngcc5 from '@angular/common';
++import * as ɵngcc6 from '@angular/forms';
++import * as ɵngcc7 from '@angular/cdk/scrolling';
+ export declare class NgxTextDiffModule {
++    static ɵfac: ɵngcc0.ɵɵFactoryDeclaration<NgxTextDiffModule, never>;
++    static ɵmod: ɵngcc0.ɵɵNgModuleDeclaration<NgxTextDiffModule, [typeof ɵngcc1.NgxTextDiffComponent, typeof ɵngcc2.LoaderSpinnerComponent, typeof ɵngcc3.FormatLinePipe, typeof ɵngcc4.ContainerDirective], [typeof ɵngcc5.CommonModule, typeof ɵngcc6.FormsModule, typeof ɵngcc7.ScrollingModule], [typeof ɵngcc1.NgxTextDiffComponent]>;
++    static ɵinj: ɵngcc0.ɵɵInjectorDeclaration<NgxTextDiffModule>;
+ }
++
++//# sourceMappingURL=ngx-text-diff.module.d.ts.map
+\ No newline at end of file
+diff --git a/node_modules/ngx-text-diff/lib/ngx-text-diff.module.d.ts.__ivy_ngcc_bak b/node_modules/ngx-text-diff/lib/ngx-text-diff.module.d.ts.__ivy_ngcc_bak
+new file mode 100644
+index 0000000..8d9023b
+--- /dev/null
++++ b/node_modules/ngx-text-diff/lib/ngx-text-diff.module.d.ts.__ivy_ngcc_bak
+@@ -0,0 +1,2 @@
++export declare class NgxTextDiffModule {
++}
+diff --git a/node_modules/ngx-text-diff/lib/ngx-text-diff.module.d.ts.map b/node_modules/ngx-text-diff/lib/ngx-text-diff.module.d.ts.map
+new file mode 100644
+index 0000000..47b6605
+--- /dev/null
++++ b/node_modules/ngx-text-diff/lib/ngx-text-diff.module.d.ts.map
+@@ -0,0 +1 @@
++{"version":3,"file":"ngx-text-diff.module.d.ts","sources":["ngx-text-diff.module.d.ts"],"names":[],"mappings":";;;;;;;;AAAA;;;;AACA","sourcesContent":["export declare class NgxTextDiffModule {\r\n}\r\n"]}
+\ No newline at end of file
+diff --git a/node_modules/ngx-text-diff/lib/ngx-text-diff.service.d.ts b/node_modules/ngx-text-diff/lib/ngx-text-diff.service.d.ts
+index 5c6f42e..e529007 100644
+--- a/node_modules/ngx-text-diff/lib/ngx-text-diff.service.d.ts
++++ b/node_modules/ngx-text-diff/lib/ngx-text-diff.service.d.ts
+@@ -1,5 +1,6 @@
+ import { diff_match_patch } from 'diff-match-patch';
+ import { DiffTableRowResult } from './ngx-text-diff.model';
++import * as ɵngcc0 from '@angular/core';
+ export declare class NgxTextDiffService {
+     diffParser: diff_match_patch;
+     constructor();
+@@ -8,4 +9,7 @@ export declare class NgxTextDiffService {
+     private formatOutput;
+     private countDiffs;
+     private getDiffParts;
++    static ɵfac: ɵngcc0.ɵɵFactoryDeclaration<NgxTextDiffService, never>;
+ }
++
++//# sourceMappingURL=ngx-text-diff.service.d.ts.map
+\ No newline at end of file
+diff --git a/node_modules/ngx-text-diff/lib/ngx-text-diff.service.d.ts.__ivy_ngcc_bak b/node_modules/ngx-text-diff/lib/ngx-text-diff.service.d.ts.__ivy_ngcc_bak
+new file mode 100644
+index 0000000..5c6f42e
+--- /dev/null
++++ b/node_modules/ngx-text-diff/lib/ngx-text-diff.service.d.ts.__ivy_ngcc_bak
+@@ -0,0 +1,11 @@
++import { diff_match_patch } from 'diff-match-patch';
++import { DiffTableRowResult } from './ngx-text-diff.model';
++export declare class NgxTextDiffService {
++    diffParser: diff_match_patch;
++    constructor();
++    private initParser;
++    getDiffsByLines(left: string, right: string): Promise<DiffTableRowResult[]>;
++    private formatOutput;
++    private countDiffs;
++    private getDiffParts;
++}
+diff --git a/node_modules/ngx-text-diff/lib/ngx-text-diff.service.d.ts.map b/node_modules/ngx-text-diff/lib/ngx-text-diff.service.d.ts.map
+new file mode 100644
+index 0000000..2ed364c
+--- /dev/null
++++ b/node_modules/ngx-text-diff/lib/ngx-text-diff.service.d.ts.map
+@@ -0,0 +1 @@
++{"version":3,"file":"ngx-text-diff.service.d.ts","sources":["ngx-text-diff.service.d.ts"],"names":[],"mappings":"AAAA;AACA;;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AACA","sourcesContent":["import { diff_match_patch } from 'diff-match-patch';\r\nimport { DiffTableRowResult } from './ngx-text-diff.model';\r\nexport declare class NgxTextDiffService {\r\n    diffParser: diff_match_patch;\r\n    constructor();\r\n    private initParser;\r\n    getDiffsByLines(left: string, right: string): Promise<DiffTableRowResult[]>;\r\n    private formatOutput;\r\n    private countDiffs;\r\n    private getDiffParts;\r\n}\r\n"]}
+\ No newline at end of file
+diff --git a/node_modules/ngx-text-diff/ngx-text-diff.d.ts b/node_modules/ngx-text-diff/ngx-text-diff.d.ts
+index bac2186..f624b0b 100644
+--- a/node_modules/ngx-text-diff/ngx-text-diff.d.ts
++++ b/node_modules/ngx-text-diff/ngx-text-diff.d.ts
+@@ -5,3 +5,5 @@ export * from './public_api';
+ export { FormatLinePipe as ɵc } from './lib/format-line.pipe';
+ export { LoaderSpinnerComponent as ɵb } from './lib/loader-spinner/loader-spinner.component';
+ export { ContainerDirective as ɵa } from './lib/ngx-text-diff-container.directive';
++
++//# sourceMappingURL=ngx-text-diff.d.ts.map
+\ No newline at end of file
+diff --git a/node_modules/ngx-text-diff/ngx-text-diff.d.ts.__ivy_ngcc_bak b/node_modules/ngx-text-diff/ngx-text-diff.d.ts.__ivy_ngcc_bak
+new file mode 100644
+index 0000000..bac2186
+--- /dev/null
++++ b/node_modules/ngx-text-diff/ngx-text-diff.d.ts.__ivy_ngcc_bak
+@@ -0,0 +1,7 @@
++/**
++ * Generated bundle index. Do not edit.
++ */
++export * from './public_api';
++export { FormatLinePipe as ɵc } from './lib/format-line.pipe';
++export { LoaderSpinnerComponent as ɵb } from './lib/loader-spinner/loader-spinner.component';
++export { ContainerDirective as ɵa } from './lib/ngx-text-diff-container.directive';
+diff --git a/node_modules/ngx-text-diff/ngx-text-diff.d.ts.map b/node_modules/ngx-text-diff/ngx-text-diff.d.ts.map
+new file mode 100644
+index 0000000..d696caa
+--- /dev/null
++++ b/node_modules/ngx-text-diff/ngx-text-diff.d.ts.map
+@@ -0,0 +1 @@
++{"version":3,"file":"ngx-text-diff.d.ts","sources":["ngx-text-diff.d.ts"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA","sourcesContent":["/**\r\n * Generated bundle index. Do not edit.\r\n */\r\nexport * from './public_api';\r\nexport { FormatLinePipe as ɵc } from './lib/format-line.pipe';\r\nexport { LoaderSpinnerComponent as ɵb } from './lib/loader-spinner/loader-spinner.component';\r\nexport { ContainerDirective as ɵa } from './lib/ngx-text-diff-container.directive';\r\n"]}
+\ No newline at end of file

@@ -1,0 +1,30 @@
+<mat-list>
+  <div mat-subheader>
+    <mat-icon class="material-icons-outlined" mat-list-icon>language</mat-icon>
+    <span style="margin-left: 15px">Client</span>
+  </div>
+  <div class="list-container">
+    <app-packages (packageSelected)="selectClient($event)" [isSelectionMode]="true"></app-packages>
+  </div>
+  <div *ngIf="client">
+    <mat-divider></mat-divider>
+    <div mat-subheader>
+      <mat-icon class="material-icons-outlined" mat-list-icon>inventory_2</mat-icon>
+      <span style="margin-left: 15px">Package</span>
+    </div>
+    <div class="list-container">
+      <app-packages (packageSelected)="selectPackage($event)" [(selectedPackage)]="sBind" [disabledPaths]="[client]"
+                    [isSelectionMode]="true"></app-packages>
+    </div>
+  </div>
+</mat-list>
+<div class="button-wrapper">
+  <button
+    (click)="createLink()"
+    [disabled]="!package || !client"
+    color="accent"
+    mat-button mat-flat-button>
+    <mat-icon class="material-icons-outlined" mat-list-icon>link</mat-icon>
+    <span>Link</span>
+  </button>
+</div>

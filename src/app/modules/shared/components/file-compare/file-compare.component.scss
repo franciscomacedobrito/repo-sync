@@ -1,0 +1,43 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  max-height: 80vh;
+  height: 100%;
+  overflow: hidden;
+
+  .files-list {
+    max-width: 159px;
+    padding-top: 54px;
+    border-right: solid 1px #3c3c3c;
+
+    .file {
+      padding: 15px;
+      cursor: pointer;
+      -webkit-user-select: none;
+      width: 130px;
+    }
+
+    .active {
+      background-color: #00000059;
+      color: #69f0ae;
+    }
+  }
+
+  .r-panel {
+    width: calc(100% - 190px);
+
+    .table-wrapper {
+      overflow-y: auto;
+      height: 100%;
+      width: calc(100% + 32px);
+    }
+
+    .toggle-wrapper {
+      display: flex;
+      width: 100%;
+      justify-content: flex-end;
+      padding: 15px;
+      border-bottom: solid 1px #3c3c3c;
+    }
+  }
+}

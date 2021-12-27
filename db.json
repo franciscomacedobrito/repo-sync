@@ -1,20 +1,6 @@
 {
   "packages": [
-    {
-      "id": "1234",
-      "path": "D:/repo-sync"
-    },
-    {
-      "id": "321",
-      "path": "D:\\kuantukusta\\kuantuKusta"
-    }
   ],
   "links": [
-    {
-      "id": 1,
-      "active": true,
-      "package": "321",
-      "client": "1234"
-    }
   ]
 }

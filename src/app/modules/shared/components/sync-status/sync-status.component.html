@@ -1,0 +1,13 @@
+<div [ngClass]="{updated: status === 'updated', outdated: status === 'outdated', visible: visible, updating: status === 'updating'}"
+     class="sync-status">
+  <!--  <button mat-icon-button (click)="update()" [disabled]="!connected" *ngIf="status !== 'updated'">-->
+  <!--    <mat-icon color="warn" class="material-icons-outlined">sync_problem</mat-icon>-->
+  <!--  </button>-->
+  <!--  <mat-icon color="accent" class="material-icons-outlined" *ngIf="status === 'updated'">check_circle</mat-icon>-->
+  <div (click)="update()" class="sync-status-indicator">
+    <div *ngIf="differences.differences"
+         matTooltip="Diferenças entre o projeto local e repositorio yalc"
+         matTooltipPosition="below">
+    </div>
+  </div>
+</div>
